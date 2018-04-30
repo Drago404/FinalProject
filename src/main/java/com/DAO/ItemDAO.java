@@ -19,6 +19,7 @@ public class ItemDAO {
 	private static final String ADD_PRODUCT = "insert into items(name,price,description,quantity,pictureUrl,category_id,brand_id)"
 			+ "values(?, ?, ?, ?, ?, ?,?) ";
 	private static final String SELECT_SPECIFIC_ITEM = "SELECT * from items WHERE id = ?";
+	private static final String SELECT_ITEM_BY_NAME = "SELECT * FROM items WHERE name LIKE ?";
 	private Connection conn;
 	public static Map<Long, Item> allItems;
 	private static ItemDAO items;
@@ -61,6 +62,47 @@ public class ItemDAO {
 
 		return itemsList;
 
+	}
+	
+	public List<Item> getItemsByName(String text) {
+		
+		StringBuilder sb = new StringBuilder(text);
+		sb.insert(0, "%");	
+		sb.append("%");
+		text = sb.toString();
+		
+		
+		try {
+			PreparedStatement stmt = conn.prepareStatement(SELECT_ITEM_BY_NAME);
+			stmt.setString(1, text);
+			ResultSet rs = stmt.executeQuery();
+			List<Item> itemsList = new ArrayList<Item>();
+			
+			while (rs.next()) {
+
+				Item item = new Item();
+				item.setId(rs.getInt("id"));
+				item.setName(rs.getString("name"));
+				item.setPrice(rs.getFloat("price"));
+				item.setDescription(rs.getString("description"));
+				item.setQuantity(rs.getInt("quantity"));
+				item.setCategoryId(rs.getLong("category_id"));
+				item.setBrandId(rs.getLong("brand_id"));
+				item.setPictureUrl(rs.getString("pictureUrl"));
+				itemsList.add(item);
+
+			}
+			stmt.close();
+
+			return itemsList;
+			
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
 	}
 
 	public Item getItem(int itemId) throws SQLException {
@@ -131,5 +173,7 @@ public class ItemDAO {
 
 		}
 	}
+
+	
 
 }
