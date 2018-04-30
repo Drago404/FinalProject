@@ -14,8 +14,6 @@ public interface UserDAO {
 	
 	boolean login(String email, String password) throws SQLException;
 	
-	boolean checkForAdmin(User user);
-	
 	public Map<String, User> getAllUsers() throws SQLException;
 
 }

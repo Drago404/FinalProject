@@ -23,8 +23,8 @@ public class UserDAOImpl implements UserDAO {
 	private static final String CHECK_USER_IF_EXISTS = "select * from users where email =?";
 	private static final String CHECK_LOGIN = "select * from users where email=? and password=sha1(?)";
 	private static final String GET_ALL_USERS = "select * from users";
-	private static final String CHECK_FOR_ADMIN = "select email,password from users where email=? and password=sha1(?)";
-	private static final String MAKE_ADMIN = "update users set is_admin=1 where id=?"; 
+//	private static final String CHECK_FOR_ADMIN = "select email,password from users where first_name=? and password=sha1(?)";
+//	private static final String MAKE_ADMIN = "update users set is_admin=1 where id=?"; 
 	private Connection conn;
 	private Map<String, User> allUsers;
 	private static UserDAOImpl userDao;
@@ -46,16 +46,19 @@ public class UserDAOImpl implements UserDAO {
 			stmt.setString(4, user.getPassword());
 			stmt.setDate(5, Date.valueOf(user.getDateOfBirth()));
 			
+			
+			synchronized (this) {
+				stmt.executeUpdate();
+				allUsers.put(user.getEmail(), user);
+			}
 			ResultSet rs = stmt.getGeneratedKeys();
 			if(rs.next()) {
 				long userId= rs.getLong(1);
 				user.setId(userId);
 			}
-			synchronized (this) {
-				stmt.executeUpdate();
-				allUsers.put(user.getEmail(), user);
-			}
+			
 			stmt.close();
+			return;
 		} else {
 			stmt.close();
 			throw new UserException("User already exists");
@@ -154,30 +157,30 @@ public class UserDAOImpl implements UserDAO {
 		return allUsers;
 	}
 	
-	@Override
-	public boolean checkForAdmin(User user) {
-		try {
-			PreparedStatement stmt = conn.prepareStatement(CHECK_FOR_ADMIN);
-			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
-				String firstName = rs.getString("first_name");
-				String password = rs.getString("password");
-				if (firstName.equals(user.getFirstName()) && user.getFirstName().equals("admin")
-						&& password.equals(user.getPassword()) && user.getPassword().equals("admin")) {
-					user.setAdmin(true);
-					PreparedStatement stmt2 = conn.prepareStatement(MAKE_ADMIN);
-					stmt.setLong(1, user.getId());
-					stmt2.executeUpdate();
-
-					return true;
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
-		return false;
-	}
+//	@Override
+//	public boolean checkForAdmin(User user) {
+//		try {
+//			PreparedStatement stmt = conn.prepareStatement(CHECK_FOR_ADMIN);
+//			ResultSet rs = stmt.executeQuery();
+//			while (rs.next()) {
+//				String firstName = rs.getString("first_name");
+//				String password = rs.getString("password");
+//				if (firstName.equals(user.getFirstName()) && user.getFirstName().equals("admin")
+//						&& password.equals(user.getPassword()) && user.getPassword().equals("admin")) {
+//					user.setAdmin(true);
+//					PreparedStatement stmt2 = conn.prepareStatement(MAKE_ADMIN);
+//					stmt2.setLong(1, user.getId());
+//					stmt2.executeUpdate();
+//
+//					return true;
+//				}
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//			return false;
+//		}
+//		return false;
+//	}
 	
 	
 	public static UserDAOImpl getInstance() throws SQLException {

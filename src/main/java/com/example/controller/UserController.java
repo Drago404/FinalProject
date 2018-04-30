@@ -37,9 +37,8 @@ public class UserController {
 		LocalDate date = LocalDate.parse(birthDate, formatter);
 
 		try {
-
+			
 			User user = new User(firstName, lastName, email, pass, date);
-			UserDAOImpl.getInstance().register(user);
 
 			user.setFirstName(firstName);
 			user.setLastName(lastName);
@@ -53,7 +52,7 @@ public class UserController {
 			e.printStackTrace();
 			return "register";
 		}
-		return "index";
+		return "redirect:index";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/login")
@@ -79,7 +78,7 @@ public class UserController {
 			return "register";
 		}
 
-		return "index";
+		return "redirect:index";
 	}
 
 }

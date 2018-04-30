@@ -58,7 +58,7 @@
 					</div>
 
 					
-				<div class="wrap-input100 validate-input" style="margin:15px" data-validate = "Please enter password again">
+				<div class="wrap-input100 validate-input" style="margin:15px" data-validate = "Please enter confirm password ">
 						<input class="input100" type="password" name="password" placeholder="Password again">
 						<span class="focus-input100"></span>
 					</div>
