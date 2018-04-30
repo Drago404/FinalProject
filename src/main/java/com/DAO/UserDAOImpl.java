@@ -35,21 +35,23 @@ public class UserDAOImpl implements UserDAO {
 		this.conn = DBConnection.getInstance().getConnection();
 		allUsers = new HashMap<String, User>();
 	}
-
 	
 	@Override
 	public boolean register(User user) throws UserException, SQLException {
-		PreparedStatement stmt = conn.prepareStatement(INSERT_USER);
+		PreparedStatement stmt = conn.prepareStatement(INSERT_USER, Statement.RETURN_GENERATED_KEYS);
 		if (checkIfUserExists(user)) {
 			stmt.setString(1, user.getFirstName());
 			stmt.setString(2, user.getLastName());
 			stmt.setString(3, user.getEmail());
 			stmt.setString(4, user.getPassword());
 			stmt.setDate(5, Date.valueOf(user.getDateOfBirth()));
+			
 			ResultSet rs = stmt.getGeneratedKeys();
-			rs.next();
-			long primaryKey = rs.getLong(1);
-			user.setId(primaryKey);
+			if(rs.next()) {
+				long userId= rs.getLong(1);
+				user.setId(userId);
+			}
+			
 			synchronized (this) {
 				stmt.executeUpdate();
 				allUsers.put(user.getEmail(), user);
