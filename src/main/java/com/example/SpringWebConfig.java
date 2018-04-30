@@ -29,9 +29,19 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/pdfs/**").addResourceLocations("/static/pdf/");
         registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
         registry.addResourceHandler("/fonts/**").addResourceLocations("/static/fonts/");
-        registry.addResourceHandler("/styles/**").addResourceLocations("/static/styles/");
-        registry.addResourceHandler("/plugins/**").addResourceLocations("/static/plugins/");
-        registry.addResourceHandler("/images/**").addResourceLocations("/static/images/");
+        registry.addResourceHandler("/styles/**").addResourceLocations("/static/css/styles/");
+        registry.addResourceHandler("/plugins/**").addResourceLocations("/static/css/plugins/");
+        registry.addResourceHandler("/images/**").addResourceLocations("/static/css/images/");
+        
+        registry.addResourceHandler("/fonts/**").addResourceLocations("/static/css/fonts/");
+        registry.addResourceHandler("/animate/**").addResourceLocations("/static/css/animate/");
+        registry.addResourceHandler("/animsition/**").addResourceLocations("/static/css/animsition/");
+        registry.addResourceHandler("/css-hamburgers/**").addResourceLocations("/static/css/css-hamburgers/");
+        registry.addResourceHandler("/images/**").addResourceLocations("/static/css/images/");
+        registry.addResourceHandler("/vendor/**").addResourceLocations("/static/css/vendor/");
+        
+        
+        
         
     	registry.addResourceHandler("**/img/**").addResourceLocations("file:///C:\\items-images\\");
         registry.addResourceHandler("**/css/**").addResourceLocations("/static/css/");

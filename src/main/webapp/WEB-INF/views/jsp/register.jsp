@@ -32,43 +32,43 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" action="./register" method="post">
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" style="height:800px" action="./register" method="post">
 					<span class="login100-form-title">
 						Sign up
 					</span>
 
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter first name">
+					<div class="wrap-input100 validate-input m-b-16" style="margin:15px" data-validate="Please enter first name">
 						<input class="input100" type="text" name="firstName" placeholder="First Name">
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Please enter last name">
+					<div class="wrap-input100 validate-input" style="margin:15px"  data-validate = "Please enter last name">
 						<input class="input100" type="text" name="lastName" placeholder="Last Name">
 						<span class="focus-input100"></span>
 					</div>
 					
-					<div class="wrap-input100 validate-input" data-validate = "Please enter email">
+					<div class="wrap-input100 validate-input" style="margin:15px" data-validate = "Please enter email">
 						<input class="input100" type="text" name="email" placeholder="Email">
 						<span class="focus-input100"></span>
 					</div>
 
-				<div class="wrap-input100 validate-input" data-validate = "Please enter password">
-						<input class="input100" type="password" name="password" placeholder="Password">
+				<div class="wrap-input100 validate-input" style="margin:15px" data-validate = "Please enter password">
+						<input class="input100" type="password" name="pass" placeholder="Password">
 						<span class="focus-input100"></span>
 					</div>
 
 					
-				<div class="wrap-input100 validate-input" data-validate = "Please enter password again">
+				<div class="wrap-input100 validate-input" style="margin:15px" data-validate = "Please enter password again">
 						<input class="input100" type="password" name="password" placeholder="Password again">
 						<span class="focus-input100"></span>
 					</div>
 					
-				<div class="wrap-input100 validate-input" data-validate = "Please enter date of birth">
+				<div class="wrap-input100 validate-input" style="margin:15px" data-validate = "Please enter date of birth">
 						<input class="input100" type="text" name="dateOfBirth" placeholder="Date of birth(YYYY-MM-DD)">
 						<span class="focus-input100"></span>
 					</div>	
 						
-				<div class="container-login100-form-btn">
+				<div class="container-login100-form-btn" style="margin:15px" >
 				<button class="login100-form-btn">
 					Register
 				</button>

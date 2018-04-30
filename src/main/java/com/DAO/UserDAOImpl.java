@@ -37,7 +37,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
-	public boolean register(User user) throws UserException, SQLException {
+	public void register(User user) throws UserException, SQLException {
 		PreparedStatement stmt = conn.prepareStatement(INSERT_USER, Statement.RETURN_GENERATED_KEYS);
 		if (checkIfUserExists(user)) {
 			stmt.setString(1, user.getFirstName());
@@ -51,13 +51,11 @@ public class UserDAOImpl implements UserDAO {
 				long userId= rs.getLong(1);
 				user.setId(userId);
 			}
-			
 			synchronized (this) {
 				stmt.executeUpdate();
 				allUsers.put(user.getEmail(), user);
 			}
 			stmt.close();
-			return true;
 		} else {
 			stmt.close();
 			throw new UserException("User already exists");
@@ -99,7 +97,6 @@ public class UserDAOImpl implements UserDAO {
 				return user;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

@@ -8,7 +8,7 @@ import com.model.User;
 
 public interface UserDAO {
 	
-	 boolean register(User user) throws UserException, SQLException;
+	 void register(User user) throws UserException, SQLException;
 
 	boolean checkIfUserExists(User user) throws UserException, SQLException;
 	
