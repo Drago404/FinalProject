@@ -65,7 +65,7 @@
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container" style="float:right" >
-							<div class="logo"><a href="./index">Technomarket</a></div>
+							<div class="logo"><a href="http://localhost:8080/FinalProject/index">Technomarket</a></div>
 						</div>
 					</div>
 
@@ -74,8 +74,8 @@
 						<div class="header_search" >
 							<div class="header_search_content">
 								<div class="header_search_form_container">
-									<form action="#" class="header_search_form clearfix">
-										<input type="search" required="required" class="header_search_input" placeholder="Search for products...">
+									<form id = "searchForm" onsubmit="searchFunction()" class="header_search_form clearfix">
+										<input type="search" name ="txtSearch" required="required" class="header_search_input" placeholder="Search for products...">
 										<div class="custom_dropdown">
 											<div class="custom_dropdown_list">
 												<span class="custom_dropdown_placeholder clc">All Categories</span>
@@ -90,7 +90,7 @@
 												</ul>
 											</div>
 										</div>
-										<button type="submit" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt=""></button>
+										<button value="" id="btnSearch"  type="submit" class="header_search_button trans_300" value="Submit" ><img src="images/search.png" alt=""></button>
 									</form>
 								</div>
 							</div>
@@ -183,7 +183,7 @@
 											<li>
 												<a href="#">Телевизори<i class="fas fa-chevron-down"></i></a>
 												<ul>
-													<li><a href="./tv">Всички телевизори<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="http://localhost:8080/FinalProject/tv">Всички телевизори<i class="fas fa-chevron-down"></i></a></li>
 													<li><a href="#">LG<i class="fas fa-chevron-down"></i></a></li>
 													<li><a href="#">NEO<i class="fas fa-chevron-down"></i></a></li>
 													<li><a href="#">PHILIPS<i class="fas fa-chevron-down"></i></a></li>

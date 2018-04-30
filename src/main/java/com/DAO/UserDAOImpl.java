@@ -18,8 +18,8 @@ import com.model.User;
 
 public class UserDAOImpl implements UserDAO {
 	
-	private	static final String INSERT_USER = "insert into users(id,first_name,last_name,email,password,date_of_birth) "
-			+ "values (null, ?, ?, ?, sha1(?), ?)";
+	private	static final String INSERT_USER = "insert into users(first_name,last_name,email,password,date_of_birth) "
+			+ "values (?, ?, ?, sha1(?), ?)";
 	private static final String CHECK_USER_IF_EXISTS = "select * from users where email =?";
 	private static final String CHECK_LOGIN = "select * from users where email=? and password=sha1(?)";
 	private static final String GET_ALL_USERS = "select * from users";
@@ -76,7 +76,33 @@ public class UserDAOImpl implements UserDAO {
 			stmt.close();
 			rs.close();
 			return true;
-}
+	}
+	
+	public User getUser(String email, String password) throws UserException{
+
+		try {
+			PreparedStatement stmt = conn.prepareStatement(CHECK_LOGIN);
+			stmt.setString(1, email);
+			stmt.setString(2, password);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()){
+				String firstName = rs.getString("first_name");
+				String lastName = rs.getString("last_name");
+				LocalDate birthDate = rs.getDate("date_of_birth").toLocalDate();
+				Boolean is_Admin = rs.getBoolean("is_admin");
+				
+				User user = new User(firstName, lastName, email, password, birthDate, is_Admin);
+				stmt.close();
+				rs.close();
+				return user;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 	
 	@Override
 	public boolean login(String email, String password) throws SQLException {
