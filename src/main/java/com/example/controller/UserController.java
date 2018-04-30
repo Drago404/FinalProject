@@ -1,4 +1,5 @@
 package com.example.controller;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -16,20 +17,16 @@ import com.DAO.UserDAOImpl;
 import com.exceptions.UserException;
 import com.model.User;
 
-
 @Controller
 public class UserController {
-	
 
-	
-	
-	  @RequestMapping(value = "/register", method = RequestMethod.GET)
-	  public String showRegister(HttpServletRequest request, HttpServletResponse response) {
-	    return "register";
-	  }
-	  
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String showRegister(HttpServletRequest request, HttpServletResponse response) {
+		return "register";
+	}
+
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String addUser(Model model , HttpServletRequest request) {
+	public String addUser(HttpServletRequest request) {
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
@@ -40,6 +37,7 @@ public class UserController {
 		LocalDate date = LocalDate.parse(birthDate, formatter);
 
 		try {
+
 			User user = new User(firstName, lastName, email, pass, date);
 			UserDAOImpl.getInstance().register(user);
 
@@ -48,22 +46,22 @@ public class UserController {
 			user.setEmail(email);
 			user.setPassword(pass);
 			user.setDateOfBirth(date);
-			
+
 			UserDAOImpl.getInstance().register(user);
-			
+
 		} catch (UserException | SQLException e) {
 			e.printStackTrace();
-			return "redirect:register";
+			return "register";
 		}
 		return "index";
-}
+	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/login")
 	public String login(Model model, HttpServletRequest request) {
-			
+
 		return "login";
-}
-	
+	}
+
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
 	public String checkLogin(Model model, HttpServletRequest request, HttpServletResponse response)
 			throws UserException {
@@ -72,25 +70,22 @@ public class UserController {
 		String password = request.getParameter("pass");
 
 		try {
-			UserDAOImpl.getInstance().login(email, password); 
-
+			UserDAOImpl.getInstance().login(email, password);
 			User user = UserDAOImpl.getInstance().getUser(email, password);
-				model.addAttribute(user);
-				
-				} catch (SQLException e) {
-					e.printStackTrace();
-					return "./login";
-				}
-				return "./index";
+			model.addAttribute(user);
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "register";
+		}
+
+		return "index";
 	}
-	
-	
-	
-	
 
-
-
-
-	
 }
+
+				
+	
+
+	
+
