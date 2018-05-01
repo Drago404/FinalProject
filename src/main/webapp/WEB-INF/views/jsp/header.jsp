@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,8 +48,17 @@
 							</div>
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="images/user.svg" alt=""></div>
-								<div><a href="register">Register</a></div>
-								<div><a href="login">Sign in</a></div>
+								<c:choose> 
+									<c:when	test = "${sessionScope.id == null}">
+										<div><a href="register">Register</a></div>
+										<div><a href="login">Sign in</a></div>
+									</c:when>
+									<c:otherwise>
+										<div><a href="">${sessionScope.firstName}</a></div>
+										<div><a href="logout">Log out</a></div>
+									</c:otherwise>
+								</c:choose>
+								
 							</div>
 						</div>
 					</div>

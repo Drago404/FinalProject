@@ -43,12 +43,12 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
         
         registry.addResourceHandler("search/img/**").addResourceLocations("file:///C:\\items-images\\");
         registry.addResourceHandler("search/css/**").addResourceLocations("/static/css/");
-        registry.addResourceHandler("search/pdfs/**").addResourceLocations("/static/pdf/");
-        registry.addResourceHandler("search/js/**").addResourceLocations("/static/js/");
-        registry.addResourceHandler("search/fonts/**").addResourceLocations("/static/fonts/");
-        registry.addResourceHandler("search/styles/**").addResourceLocations("/static/styles/");
-        registry.addResourceHandler("search/plugins/**").addResourceLocations("/static/plugins/");
-        registry.addResourceHandler("search/images/**").addResourceLocations("/static/images/");
+        registry.addResourceHandler("search/pdfs/**").addResourceLocations("/static/css/pdf/");
+        registry.addResourceHandler("search/js/**").addResourceLocations("/static/css/js/");
+        registry.addResourceHandler("search/fonts/**").addResourceLocations("/static/css/fonts/");
+        registry.addResourceHandler("search/styles/**").addResourceLocations("/static/css/styles/");
+        registry.addResourceHandler("search/plugins/**").addResourceLocations("/static/css/plugins/");
+        registry.addResourceHandler("search/images/**").addResourceLocations("/static/css/images/");
         
         
     	registry.addResourceHandler("**/img/**").addResourceLocations("file:///C:\\items-images\\");
