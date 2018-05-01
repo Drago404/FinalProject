@@ -89,12 +89,13 @@ public class UserDAOImpl implements UserDAO {
 			stmt.setString(2, password);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()){
+				long id = rs.getLong("id");
 				String firstName = rs.getString("first_name");
 				String lastName = rs.getString("last_name");
 				LocalDate birthDate = rs.getDate("date_of_birth").toLocalDate();
 				Boolean is_Admin = rs.getBoolean("is_admin");
 				
-				User user = new User(firstName, lastName, email, password, birthDate, is_Admin);
+				User user = new User(id, firstName, lastName, email, password, birthDate, is_Admin);
 				stmt.close();
 				rs.close();
 				return user;

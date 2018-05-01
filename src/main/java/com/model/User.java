@@ -51,6 +51,18 @@ public class User {
 		this.orders = new ArrayList<Order>();
 	}
 	
+	public User(long id, String firstName, String lastName, String email, String password,
+			LocalDate dateOfBirth, boolean isAdmin) throws UserException {
+		this.id = id;
+		setFirstName(firstName);
+		setLastName(lastName);
+		setEmail(email);
+		setPassword(password);
+		setDateOfBirth(dateOfBirth);
+		this.isAdmin = isAdmin;
+		this.orders = new ArrayList<Order>();
+	}
+	
 	public User() {
 		
 	}
