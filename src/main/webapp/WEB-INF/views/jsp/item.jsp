@@ -89,10 +89,19 @@
 									</ul>
 
 								</div>
+								<div> <c:set var="id" value='${item.id}' />  </div>
 
 								<div class="product_price">${item.price} лв</div>
 								<div class="button_container">
-									<button type="button" class="button cart_button">Add to Cart</button>
+								
+								<c:choose> 
+									<c:when	test = "${sessionScope.id == null}">
+										<button type="button" onclick="window.location.href='/FinalProject/login';" class="button cart_button">Add to Cart</button>
+									</c:when>
+									<c:otherwise>  				<!-- "redirectOne()" -->
+										<button type="button" onclick="window.location.href='/FinalProject/addItem' + '${item.id}';" class="button cart_button">Add to Cart</button>
+									</c:otherwise>
+								</c:choose>
 									<div class="product_fav"><i class="fas fa-heart"></i></div>
 								</div>
 								
@@ -399,8 +408,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	function searchFunction(){
     	var action_src = "http://localhost:8080/FinalProject/search/" + document.getElementsByName("txtSearch")[0].value;
     	var form = document.getElementById('searchForm');
-    	form.action = action_src ;
+    	form.action = action_src ;	
 	}
+	 function createCookie(name,value,days) {
+		 if (days) 
+		   {
+		     var date = new Date();
+		     date.setTime(date.getTime()+(days*24*60*60*1000));
+		     var expires = "; expires="+date.toGMTString();
+		   }
+		    else var expires = "";
+		    document.cookie = name+"="+value+expires+"; path=/FinalProject";
+		 }
+	function redirectOne()
+	  {
+	    createCookie(('state'+document.getElementBy("id") , "", 1));
+	    window.location.href = "/FinalProject/cart";
+	  }
 </script>
 
 </body>
