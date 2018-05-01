@@ -14,6 +14,7 @@ import java.util.Map;
 
 import com.db.DBConnection;
 import com.exceptions.UserException;
+import com.model.Order;
 import com.model.User;
 
 public class UserDAOImpl implements UserDAO {
@@ -23,6 +24,8 @@ public class UserDAOImpl implements UserDAO {
 	private static final String CHECK_USER_IF_EXISTS = "select * from users where email =?";
 	private static final String CHECK_LOGIN = "select * from users where email=? and password=sha1(?)";
 	private static final String GET_ALL_USERS = "select * from users";
+	private static final String INSERT_ORDER = "insert into address(first_name, last_name, phone, city, post_code, "
+			+ "street, street_number, block, enterance, floor, appartment, description) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
 //	private static final String CHECK_FOR_ADMIN = "select email,password from users where first_name=? and password=sha1(?)";
 //	private static final String MAKE_ADMIN = "update users set is_admin=1 where id=?"; 
 	private Connection conn;
@@ -185,6 +188,28 @@ public class UserDAOImpl implements UserDAO {
 //		return false;
 //	}
 	
+
+	public void makeOrder(Order order) {
+		try {
+			PreparedStatement stmt = conn.prepareStatement(INSERT_ORDER, Statement.RETURN_GENERATED_KEYS);
+			stmt.setString(1, order.getOrdererFirstName());
+			stmt.setString(2, order.getOrdererLastName());
+			stmt.setString(3, order.getOrdererPhone());
+			stmt.setString(4, order.getOrdererCity());
+			stmt.setString(5, order.getOrdererPostCode());
+			stmt.setString(6, order.getOrdererStreet());
+			stmt.setInt(7, order.getOrdererStreetNumber());
+			stmt.setString(8, order.getOrdererBlock());
+			stmt.setString(9, order.getOrdererEnterance());
+			stmt.setInt(10, order.getOrdererFloor());
+			stmt.setString(11, order.getOrdererAppartment());
+			stmt.setString(12, order.getDescription());
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	public static UserDAOImpl getInstance() throws SQLException {
 		if (userDao == null) {

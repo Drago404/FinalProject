@@ -74,10 +74,10 @@ public class UserController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
-	public String checkLogin(Model model, HttpServletRequest request, HttpServletResponse response)
-	{
-		String email = request.getParameter("email");
+	public String checkLogin(Model model, HttpServletRequest request, HttpServletResponse response){
+
 		String password = request.getParameter("pass");
+		String email = request.getParameter("email");
 
 		try {
 			UserDAOImpl.getInstance().login(email, password);
@@ -85,7 +85,6 @@ public class UserController {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", user.getId());
 			session.setAttribute("firstName", user.getFirstName());
-			
 			
 			return "redirect:index";
 
