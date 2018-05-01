@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -73,8 +74,8 @@ public class UserController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
-	public String checkLogin(Model model, HttpServletRequest request, HttpServletResponse response){
-
+	public String checkLogin(Model model, HttpServletRequest request, HttpServletResponse response)
+	{
 		String email = request.getParameter("email");
 		String password = request.getParameter("pass");
 
@@ -84,14 +85,31 @@ public class UserController {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", user.getId());
 			session.setAttribute("firstName", user.getFirstName());
+			
+			
 			return "redirect:index";
 
-			
-		} catch (SQLException | UserException e) {
+		} catch (UserException |SQLException e) {
+
 			e.printStackTrace();
 			return "redirect:login";
 		}
 	}
+	
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/cart")
+	public String cart(Model model, HttpServletRequest request) {
+		
+		//String id = (String) request.getAttribute("id");
+		
+		String id = request.getCookies()[0].getValue();
+		
+		Cookie c = new Cookie("id", id);
+		c.setMaxAge(1000);
+		
+		return "cart";
+	}
+	
 
 }
 

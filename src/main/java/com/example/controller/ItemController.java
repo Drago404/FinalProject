@@ -7,9 +7,11 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,13 +29,32 @@ public class ItemController  {
  
 	
 	@RequestMapping(method=RequestMethod.GET, value="/{id}")
-	public String getItem(Model model, @PathVariable Integer id) throws SQLException {
+	public String getItem(Model model, @PathVariable Integer id, HttpServletRequest request, HttpServletResponse response)
+			throws SQLException {
+		
+
+		
 		ItemDAO dao = ItemDAO.getInstance();
 		Item item = dao.getItem(id);
 		
 		model.addAttribute(item);
 		
+		
+		
 		return "item";
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/addItem{id}")
+	public String addItem(Model model, @PathVariable Integer id, HttpServletRequest request, HttpServletResponse response)
+			throws SQLException {
+		
+		HttpSession session = request.getSession();
+		Cookie c = new Cookie((session.getAttribute("firstName")) + id.toString() , id.toString());
+		c.setMaxAge(1000);
+		
+		response.addCookie(c);	
+		
+		return "cart";
 	}
 
 	@RequestMapping(method=RequestMethod.GET, value="/search/{text}")

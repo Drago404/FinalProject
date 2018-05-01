@@ -118,8 +118,7 @@
 	
 							<!-- Product Item -->
 							<div class="product_item is_new">
-								<div class="product_border"></div>
-								
+								<div class="product_border"></div>			
 								<div class="product_image d-flex flex-column align-items-center justify-content-center">
 									<a href="../${item.id}"><img src="${item.pictureUrl}" alt=""></a></div>
 								<div class="product_content">

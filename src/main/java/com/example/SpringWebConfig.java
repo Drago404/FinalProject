@@ -28,7 +28,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
         registry.addResourceHandler("/pdfs/**").addResourceLocations("/static/pdf/");
         registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
-        registry.addResourceHandler("/fonts/**").addResourceLocations("/static/fonts/");
+        registry.addResourceHandler("/fonts/**").addResourceLocations("/static/css/fonts/");
         registry.addResourceHandler("/styles/**").addResourceLocations("/static/css/styles/");
         registry.addResourceHandler("/plugins/**").addResourceLocations("/static/css/plugins/");
         registry.addResourceHandler("/images/**").addResourceLocations("/static/css/images/");
@@ -44,11 +44,22 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("search/img/**").addResourceLocations("file:///C:\\items-images\\");
         registry.addResourceHandler("search/css/**").addResourceLocations("/static/css/");
         registry.addResourceHandler("search/pdfs/**").addResourceLocations("/static/css/pdf/");
-        registry.addResourceHandler("search/js/**").addResourceLocations("/static/css/js/");
+        registry.addResourceHandler("search/js/**").addResourceLocations("/static/js/");
         registry.addResourceHandler("search/fonts/**").addResourceLocations("/static/css/fonts/");
         registry.addResourceHandler("search/styles/**").addResourceLocations("/static/css/styles/");
         registry.addResourceHandler("search/plugins/**").addResourceLocations("/static/css/plugins/");
         registry.addResourceHandler("search/images/**").addResourceLocations("/static/css/images/");
+        
+        
+        registry.addResourceHandler("cart/img/**").addResourceLocations("file:///C:\\items-images\\");
+        registry.addResourceHandler("cart/css/**").addResourceLocations("/static/css/");
+        registry.addResourceHandler("cart/pdfs/**").addResourceLocations("/static/css/pdf/");
+        registry.addResourceHandler("cart/js/**").addResourceLocations("/static/js/");
+        registry.addResourceHandler("cart/fonts/**").addResourceLocations("/static/css/fonts/");
+        registry.addResourceHandler("cart/styles/**").addResourceLocations("/static/css/styles/");
+        registry.addResourceHandler("cart/plugins/**").addResourceLocations("/static/css/plugins/");
+        registry.addResourceHandler("cart/images/**").addResourceLocations("/static/css/images/");
+        
         
         
     	registry.addResourceHandler("**/img/**").addResourceLocations("file:///C:\\items-images\\");

@@ -126,7 +126,7 @@
 							<div class="product_item is_new">
 								<div class="product_border"></div>
 								<div class="product_image d-flex flex-column align-items-center justify-content-center">
-								<a href="./${item.id}"><img src="${item.pictureUrl}" alt=""></a></div>
+									<a href="./${item.id}"><img src="${item.pictureUrl}" alt=""></a></div>
 								<div class="product_content">
 									<div class="product_price">${item.price} лв.</div>
 									<div class="product_name"><div><a href="./${item.id}" tabindex="0">${item.name}</a></div></div>
