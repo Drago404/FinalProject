@@ -54,7 +54,7 @@ public class ItemController  {
 		
 		response.addCookie(c);	
 		
-		return "cart";
+		return "redirect:cart";
 	}
 
 	@RequestMapping(method=RequestMethod.GET, value="/search/{text}")
