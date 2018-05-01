@@ -14,8 +14,8 @@ public class Item {
 	private long brandId;
 	
 
-	public Item(int id,String name, float price, String description, int quantity, String pictureUrl, long categoryId,long brandId) {
-		setId(id);
+	public Item(String name, float price, String description, int quantity, String pictureUrl, long categoryId,long brandId) {
+		//setId(id);
 		setName(name);
 		setPrice(price);
 		setDescription(description);

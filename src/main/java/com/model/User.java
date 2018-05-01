@@ -3,7 +3,10 @@ package com.model;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.exceptions.UserException;
 
@@ -67,8 +70,6 @@ public class User {
 		
 	}
 	
-	
-
 	public long getId() {
 		return id;
 	}
@@ -143,9 +144,5 @@ public class User {
 	public void setId(long id) {
 		this.id = id;
 	}
-	
-	
-	
-	
-	
+
 }

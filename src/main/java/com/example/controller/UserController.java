@@ -73,8 +73,7 @@ public class UserController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
-	public String checkLogin(Model model, HttpServletRequest request, HttpServletResponse response)
-			throws UserException {
+	public String checkLogin(Model model, HttpServletRequest request, HttpServletResponse response){
 
 		String email = request.getParameter("email");
 		String password = request.getParameter("pass");
@@ -88,9 +87,9 @@ public class UserController {
 			return "redirect:index";
 
 			
-		} catch (SQLException e) {
+		} catch (SQLException | UserException e) {
 			e.printStackTrace();
-			return "redirect:loign";
+			return "redirect:login";
 		}
 	}
 
