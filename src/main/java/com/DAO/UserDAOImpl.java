@@ -99,6 +99,8 @@ public class UserDAOImpl implements UserDAO {
 				stmt.close();
 				rs.close();
 				return user;
+			} else{
+				throw new UserException();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
