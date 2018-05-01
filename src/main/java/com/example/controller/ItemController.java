@@ -41,9 +41,9 @@ public class ItemController  {
 		model.addAttribute("newItem", new Item());
 		
 		ItemDAO dao = ItemDAO.getInstance();
-		//List<Item> items = dao.getItemsByName(text);
+		List<Item> items = dao.getItemsByName(text);
 		
-		//model.addAttribute("items",items);
+		model.addAttribute("items",items);
 		
 		return "search";
 	}
