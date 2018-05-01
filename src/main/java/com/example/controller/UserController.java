@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,6 +61,16 @@ public class UserController {
 
 		return "login";
 	}
+	
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/logout")
+	public String logout(Model model, HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		session.invalidate();
+
+		return "redirect:index";
+	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
 	public String checkLogin(Model model, HttpServletRequest request, HttpServletResponse response)
@@ -71,14 +82,16 @@ public class UserController {
 		try {
 			UserDAOImpl.getInstance().login(email, password);
 			User user = UserDAOImpl.getInstance().getUser(email, password);
-			model.addAttribute(user);
+			HttpSession session = request.getSession();
+			session.setAttribute("id", user.getId());
+			session.setAttribute("firstName", user.getFirstName());
+			return "redirect:index";
 
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return "register";
+			return "redirect:loign";
 		}
-
-		return "redirect:index";
 	}
 
 }
