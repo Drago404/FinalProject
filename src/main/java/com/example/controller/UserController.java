@@ -89,8 +89,8 @@ public class UserController {
 			
 			return "redirect:index";
 
+			
 		} catch (UserException |SQLException e) {
-
 			e.printStackTrace();
 			return "redirect:login";
 		}
