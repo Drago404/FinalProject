@@ -94,21 +94,6 @@ public class UserController {
 			return "redirect:login";
 		}
 	}
-	
-	
-	@RequestMapping(method = RequestMethod.GET, value = "/cart")
-	public String cart(Model model, HttpServletRequest request) {
-		
-		//String id = (String) request.getAttribute("id");
-		
-		String id = request.getCookies()[0].getValue();
-		
-		Cookie c = new Cookie("id", id);
-		c.setMaxAge(1000);
-		
-		return "cart";
-	}
-	
 
 }
 
