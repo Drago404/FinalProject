@@ -3,6 +3,8 @@ package com.example.controller;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.ui.Model;
 
-
+import com.DAO.ItemDAO;
 import com.DAO.UserDAOImpl;
 import com.exceptions.UserException;
+import com.model.Item;
 import com.model.User;
 
 @Controller
@@ -67,7 +70,7 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.GET, value = "/logout")
 	public String logout(Model model, HttpServletRequest request) {
 
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 		session.invalidate();
 
 		return "redirect:index";
@@ -85,6 +88,7 @@ public class UserController {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", user.getId());
 			session.setAttribute("firstName", user.getFirstName());
+			session.setAttribute("email", user.getEmail());
 			
 			return "redirect:index";
 

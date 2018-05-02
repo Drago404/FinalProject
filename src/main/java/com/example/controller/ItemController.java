@@ -44,18 +44,7 @@ public class ItemController  {
 		return "item";
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, value="/addItem{id}")
-	public String addItem(Model model, @PathVariable Integer id, HttpServletRequest request, HttpServletResponse response)
-			throws SQLException {
-		
-		HttpSession session = request.getSession();
-		Cookie c = new Cookie((session.getAttribute("firstName")) + id.toString() , id.toString());
-		c.setMaxAge(1000);
-		
-		response.addCookie(c);	
-		
-		return "cart";
-	}
+	
 
 	@RequestMapping(method=RequestMethod.GET, value="/search/{text}")
 	public String searchItems(Model model, @PathVariable("text") String text) throws SQLException {
