@@ -91,7 +91,6 @@ public class ItemDAO implements IitemDAO{
 				item.setBrandId(rs.getLong("brand_id"));
 				item.setPictureUrl(rs.getString("pictureUrl"));
 				itemsList.add(item);
-
 			}
 			stmt.close();
 

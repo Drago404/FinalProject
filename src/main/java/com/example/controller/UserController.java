@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -85,10 +86,21 @@ public class UserController {
 		try {
 			UserDAOImpl.getInstance().login(email, password);
 			User user = UserDAOImpl.getInstance().getUser(email, password);
+			
+			if(UserDAOImpl.getInstance().checkIsDeleted(email)) {
+				return "redirect:login";
+			}
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("id", user.getId());
 			session.setAttribute("firstName", user.getFirstName());
 			session.setAttribute("email", user.getEmail());
+			session.setAttribute("isAdmin", user.isAdmin());
+			
+			//check for admin
+			if(UserDAOImpl.getInstance().checkForAdmin(user)) {
+				user.setAdmin(true);
+			}
 			
 			return "redirect:index";
 
@@ -98,10 +110,6 @@ public class UserController {
 			return "redirect:login";
 		}
 	}
-	
-	
-	
-	
 
 }
 

@@ -28,26 +28,20 @@
 						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
 						<div class="top_bar_content ml-auto">
 							<div class="top_bar_menu">
-								<ul class="standard_dropdown top_bar_dropdown">
-									<li>
-										<a href="#">English<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a href="#">Italian</a></li>
-											<li><a href="#">Spanish</a></li>
-											<li><a href="#">Japanese</a></li>
-										</ul>
-									</li>
-									<li>
-										<a href="#">$ US dollar<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a href="#">EUR Euro</a></li>
-											<li><a href="#">GBP British Pound</a></li>
-											<li><a href="#">JPY Japanese Yen</a></li>
-										</ul>
-									</li>
-								</ul>
+						
 							</div>
-							<div class="top_bar_user">
+
+
+								<!-- Admin -->
+								
+										<c:if test="${sessionScope.isAdmin}">
+											<div>
+												<a href="allUsers">All users</a>
+											</div>
+										</c:if>
+								
+
+								<div class="top_bar_user">
 								<div class="user_icon"><img src="images/user.svg" alt=""></div>
 								<c:choose> 
 									<c:when	test = "${sessionScope.id == null}">
@@ -66,9 +60,6 @@
 				</div>
 			</div>		
 		</div>
-
-		<!-- Header Main -->
-
 		<div class="header_main">
 			<div class="container">
 				<div class="row">
@@ -148,13 +139,11 @@
 						<div class="main_nav_content d-flex flex-row">
 
 							<!-- Categories Menu 
-
 							<div class="cat_menu_container">
 								<div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
 									<div class="cat_burger"><span></span><span></span><span></span></div>
 									<div class="cat_menu_text">Категории</div>
 								</div>
-
 								<ul class="cat_menu">
 									<li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
 									<li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
@@ -183,7 +172,6 @@
 									<li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
 								</ul>
 							</div>
-
 							<!-- Main Nav Menu -->
 
 			<!--		<div class="main_nav_menu ml-auto">   -->		
