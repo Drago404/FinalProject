@@ -90,7 +90,6 @@ public class ItemDAO {
 				item.setBrandId(rs.getLong("brand_id"));
 				item.setPictureUrl(rs.getString("pictureUrl"));
 				itemsList.add(item);
-
 			}
 			stmt.close();
 

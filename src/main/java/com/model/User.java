@@ -17,6 +17,7 @@ public class User {
 	private boolean isMale;
 	private LocalDate dateOfBirth;
 	private boolean isAdmin;
+	private boolean isDeleted = false;
 	private List<Order> orders;
 	private List<Item> favItems;
 	
@@ -60,6 +61,19 @@ public class User {
 		setPassword(password);
 		setDateOfBirth(dateOfBirth);
 		this.isAdmin = isAdmin;
+		setDeleted(isDeleted);
+		this.orders = new ArrayList<Order>();
+	}
+	
+	public User(long id, String firstName, String lastName, String email, String password,
+			boolean isDeleted) throws UserException {
+		this.id = id;
+		setFirstName(firstName);
+		setLastName(lastName);
+		setEmail(email);
+		setPassword(password);
+		setDateOfBirth(dateOfBirth);
+		setDeleted(isDeleted);
 		this.orders = new ArrayList<Order>();
 	}
 	
@@ -142,6 +156,81 @@ public class User {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((favItems == null) ? 0 : favItems.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + (isAdmin ? 1231 : 1237);
+		result = prime * result + (isMale ? 1231 : 1237);
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((orders == null) ? 0 : orders.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (dateOfBirth == null) {
+			if (other.dateOfBirth != null)
+				return false;
+		} else if (!dateOfBirth.equals(other.dateOfBirth))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (favItems == null) {
+			if (other.favItems != null)
+				return false;
+		} else if (!favItems.equals(other.favItems))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (id != other.id)
+			return false;
+		if (isAdmin != other.isAdmin)
+			return false;
+		if (isMale != other.isMale)
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (orders == null) {
+			if (other.orders != null)
+				return false;
+		} else if (!orders.equals(other.orders))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		return true;
+	}
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 	
 	
