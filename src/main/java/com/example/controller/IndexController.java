@@ -18,6 +18,9 @@ public class IndexController {
 		if ((request.getSession(false) != null) && (request.getAttribute("id") != null)) {
 			long id = (long) request.getSession().getAttribute("id");
 		}
+		
+		
+		
 		return "index";
 	}
 

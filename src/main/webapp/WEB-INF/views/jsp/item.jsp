@@ -66,14 +66,14 @@
 									<!-- Product Quantity -->
 									<div class="product_quantity clearfix">
 										<span>Quantity: </span>
-										<input id="quantity_input" type="text" pattern="[0-9]*" value="1">
+										<input id="quantity_input" type="text" pattern="[1-9]*" value="1">
 										<div class="quantity_buttons">
 											<div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
 											<div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
 										</div>
 									</div>
 
-									<!-- Product Color -->
+									<!-- Product Color 
 									<ul class="product_color">
 										<li>
 											<span>Color: </span>
@@ -87,7 +87,7 @@
 											</ul>
 										</li>
 									</ul>
-
+									-->
 								</div>
 								<div> <c:set var="id" value='${item.id}' />  </div>
 
@@ -99,7 +99,7 @@
 										<button type="button" onclick="window.location.href='/FinalProject/login';" class="button cart_button">Add to Cart</button>
 									</c:when>
 									<c:otherwise>  				<!-- "redirectOne()" -->
-										<button type="button" onclick="window.location.href='/FinalProject/addItem' + '${item.id}';" class="button cart_button">Add to Cart</button>
+										<button type="button" onclick="window.location.href='/FinalProject/addItem?itemId=' + '${item.id}' +'&itemQuantity=' + quantityInput() ;" class="button cart_button">Add to Cart</button>
 									</c:otherwise>
 								</c:choose>
 									<div class="product_fav"><i class="fas fa-heart"></i></div>
@@ -410,21 +410,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     	var form = document.getElementById('searchForm');
     	form.action = action_src ;	
 	}
-	 function createCookie(name,value,days) {
-		 if (days) 
-		   {
-		     var date = new Date();
-		     date.setTime(date.getTime()+(days*24*60*60*1000));
-		     var expires = "; expires="+date.toGMTString();
-		   }
-		    else var expires = "";
-		    document.cookie = name+"="+value+expires+"; path=/FinalProject";
-		 }
-	function redirectOne()
-	  {
-	    createCookie(('state'+document.getElementBy("id") , "", 1));
-	    window.location.href = "/FinalProject/cart";
+
+	  function quantityInput(){
+		  return document.getElementById('quantity_input').value;
 	  }
+	</script>
 </script>
 
 </body>

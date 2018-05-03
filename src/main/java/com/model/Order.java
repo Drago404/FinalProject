@@ -11,17 +11,17 @@ import com.exceptions.OrderException;
 public class Order {
 
 	private long id;
-	private Map<Long, Item> items;
+	private Map<Integer, Integer> items;
 	private String ordererFirstName;
 	private String ordererLastName;
 	private String ordererCity;
 	private String ordererPhone;
 	private String ordererPostCode;
 	private String ordererStreet;
-	private int ordererStreetNumber;
+	private Integer ordererStreetNumber;
 	private String ordererBlock;
 	private String ordererEnterance;
-	private int ordererFloor;
+	private Integer ordererFloor;
 	private String ordererAppartment;
 	private String description;
 	private int userId;
@@ -36,13 +36,14 @@ public class Order {
 		setOrdererPostCode(ordererPostCode);
 		setOrdererStreet(ordererStreet);
 		this.userId = userId;
-		this.items = new HashMap<Long, Item>();
+		this.items = new HashMap<Integer, Integer>();
 	}
 	
 	public Order(String ordererFirstName, String ordererLastName, String ordererCity, String ordererPhone,
-			String ordererPostCode, String ordererStreet, int ordererStreetNumber, String ordererBlock,
-			String ordererEnterance, int ordererFloor, String ordererAppartment, String description) throws OrderException {
-		this.id = id;
+			String ordererPostCode, String ordererStreet, Integer ordererStreetNumber, String ordererBlock,
+			String ordererEnterance, Integer ordererFloor, String ordererAppartment, String description, int userId,
+			HashMap<Integer, Integer> items) throws OrderException {
+
 		setOrdererFirstName(ordererFirstName);
 		setOrdererLastName(ordererLastName);
 		setOrdererCity(ordererCity);
@@ -55,19 +56,23 @@ public class Order {
 		setOrdererFloor(ordererFloor);
 		setOrdererAppartment(ordererAppartment);
 		setDescription(description);
-		this.userId = userId;
-		this.items = new HashMap<Long, Item>();
+		setUserId(userId);
+		setItems(items);
 	}
 	
 	public Order() {
 		
 	}
 
+	
+	
+	
+
 	public long getId() {
 		return id;
 	}
 
-	public Map<Long, Item> getItems() {
+	public Map<Integer, Integer> getItems() {
 		return Collections.unmodifiableMap(items);
 	}
 
@@ -136,15 +141,14 @@ public class Order {
 			throw new OrderException("invalid orderer street ");
 	}
 
-	public int getOrdererStreetNumber() {
+	public Integer getOrdererStreetNumber() {
 		return ordererStreetNumber;
 	}
 
-	public void setOrdererStreetNumber(int ordererStreetNumber) throws OrderException {
-		if(ordererStreetNumber > 0 ) {
+	public void setOrdererStreetNumber(Integer ordererStreetNumber) throws OrderException {
+
 		this.ordererStreetNumber = ordererStreetNumber;
-		}else
-			throw new OrderException("invalid orderer street number");
+		
 	}
 
 	public String getOrdererBlock() {
@@ -152,30 +156,27 @@ public class Order {
 	}
 
 	public void setOrdererBlock(String ordererBlock) throws OrderException {
-		if (ordererBlock != null && ordererBlock.trim().length() > 0) {
+		
 			this.ordererBlock = ordererBlock;
-		} else
-			throw new OrderException("invalid orderer block");
+		
 	}
 	public String getOrdererEnterance() {
 		return ordererEnterance;
 	}
 
 	public void setOrdererEnterance(String ordererEnterance) throws OrderException {
-		if (ordererEnterance != null && ordererEnterance.trim().length() > 0) {
+		
 			this.ordererEnterance = ordererEnterance;
-		} else
-			throw new OrderException("invalid orderer block entrance");
+
 	}
-	public int getOrdererFloor() {
+	public Integer getOrdererFloor() {
 		return ordererFloor;
 	}
 
-	public void setOrdererFloor(int ordererFloor) throws OrderException {
-		if(ordererFloor > 0 ) {
+	public void setOrdererFloor(Integer ordererFloor) throws OrderException {
+		
 			this.ordererFloor = ordererFloor;
-			}else
-				throw new OrderException("invalid orderer floor");
+			
 		}
 
 	public String getOrdererAppartment() {
@@ -183,10 +184,9 @@ public class Order {
 	}
 
 	public void setOrdererAppartment(String ordererAppartment) throws OrderException {
-		if (ordererAppartment != null && ordererAppartment.trim().length() > 0) {
+		
 			this.ordererAppartment = ordererAppartment;
-		} else
-			throw new OrderException("invalid orderer apartment ");
+		
 	
 	}
 
@@ -195,10 +195,9 @@ public class Order {
 	}
 
 	public void setDescription(String description) throws OrderException {
-		if (description != null && description.trim().length() > 0) {
+		
 			this.description = description;
-		} else
-			throw new OrderException("invalid description ");
+		
 	
 	}
 	public int getUserId() {
@@ -213,15 +212,17 @@ public class Order {
 		this.id = id;
 	}
 
-	public void setItems(Map items) {
+	public void setItems(Map<Integer,Integer> items) {
 		this.items = items;
 	}
 	
-	public void addItem(Item item) throws ItemException {
-		if(item != null) {
-			items.put(item.getId(), item);
-		} else throw new ItemException("invalid item");
-	}
+	
+	
+//	public void addItem(Item item) throws ItemException {
+//		if(item != null) {
+//			items.put(item.getId(), item);
+//		} else throw new ItemException("invalid item");
+//	}
 
 	
 

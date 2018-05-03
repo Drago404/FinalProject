@@ -9,11 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import com.db.DBConnection;
 import com.model.Category;
 import com.model.Item;
 
-public class ItemDAO {
+@Component
+public class ItemDAO implements IitemDAO{
 
 	private static final String SHOW_ALL_ITEMS_BY_CATEGORY = "SELECT * FROM items WHERE category_id = ?";
 	private static final String ADD_PRODUCT = "insert into items(name,price,description,quantity,pictureUrl,category_id,brand_id)"
@@ -22,19 +25,17 @@ public class ItemDAO {
 	private static final String SELECT_ITEM_BY_NAME = "SELECT * FROM items WHERE name LIKE ?";
 	private Connection conn;
 	public static Map<Long, Item> allItems;
-	private static ItemDAO items;
+
+	
+	/////////
+	private ICategoryDAO categoryDAO;
 
 	public ItemDAO() throws SQLException {
 		this.conn = DBConnection.getInstance().getConnection();
 		allItems = new HashMap<Long, Item>();
 	}
 
-	public static ItemDAO getInstance() throws SQLException {
-		if (items == null) {
-			items = new ItemDAO();
-		}
-		return items;
-	}
+
 
 	public List<Item> getItemsByCategory(Category category) throws SQLException {
 		int categoryID = category.getId();
@@ -142,8 +143,8 @@ public class ItemDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			int categoryId = CategoryDAO.getInstance().getAllCategories().get(i.getCategoryId());
-			int brandId = CategoryDAO.getInstance().getAllCategories().get(i.getCategoryId());
+			int categoryId = categoryDAO.getAllCategories().get(i.getCategoryId());
+//			int brandId = categoryDAO.getAllCategories().get(i.getCategoryId());
 			stmt = conn.prepareStatement(ADD_PRODUCT);
 			stmt.setString(1, i.getName());
 			stmt.setFloat(2, i.getPrice());

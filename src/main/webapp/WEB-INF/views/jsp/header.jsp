@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +56,7 @@
 									</c:when>
 									<c:otherwise>
 										<div><a href="">${sessionScope.firstName}</a></div>
-										<div><a href="logout">Log out</a></div>
+										<div><a href="http://localhost:8080/FinalProject/logout">Log out</a></div>
 									</c:otherwise>
 								</c:choose>
 								
@@ -127,7 +128,7 @@
 									</div>
 									<div class="cart_content">
 										<div class="cart_text"><a href="http://localhost:8080/FinalProject/cart">Cart</a></div>
-										<div class="cart_price">$85</div>
+										<div class="cart_price">${totalPrice}</div>
 									</div>
 								</div>
 							</div>

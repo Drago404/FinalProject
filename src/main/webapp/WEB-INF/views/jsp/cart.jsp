@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,49 +30,38 @@
 						<div class="cart_title">Shopping Cart</div>
 						<div class="cart_items">
 							<ul class="cart_list">
+							<c:choose> 
+									<c:when	test = "${fn:length(items)==0}">
+										<div class="order_total_amount">Your cart is empty</div>
+									</c:when>
+									<c:otherwise>
+										<c:forEach items="${items}" var="item" varStatus="loop">
 								<li class="cart_item clearfix">
-									<div class="cart_item_image"><img src="images/shopping_cart.jpg" alt=""></div>
+									<div class="cart_item_image"><img src="${item.pictureUrl}" alt=""></div>
 									<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
 										<div class="cart_item_name cart_info_col">
 											<div class="cart_item_title">Name</div>
-											<div class="cart_item_text">MacBook Air 13</div>
+											<div class="cart_item_text">${item.name}</div>
 										</div>
 										<div class="cart_item_quantity cart_info_col">
 											<div class="cart_item_title">Quantity</div>
-											<div class="cart_item_text">1</div>
+											<div class="cart_item_text">${item.quantity}</div>
 										</div>
 										<div class="cart_item_price cart_info_col">
 											<div class="cart_item_title">Price</div>
-											<div class="cart_item_text">$2000</div>
+											<div class="cart_item_text">${item.price} лв.</div>
 										</div>
-										<div class="cart_item_total cart_info_col">
+									<!--  	<div class="cart_item_total cart_info_col">
 											<div class="cart_item_title">Total</div>
-											<div class="cart_item_text">$2000</div>
-										</div>
+											<div class="cart_item_text"></div>
+										</div> -->
 									</div>
 								</li>
+							</c:forEach>
+									</c:otherwise>
+								</c:choose>
+							
 								
-								<li class="cart_item clearfix">
-									<div class="cart_item_image"><img src="images/shopping_cart.jpg" alt=""></div>
-									<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-										<div class="cart_item_name cart_info_col">
-											<div class="cart_item_title">Name</div>
-											<div class="cart_item_text">MacBook Air 13</div>
-										</div>
-										<div class="cart_item_quantity cart_info_col">
-											<div class="cart_item_title">Quantity</div>
-											<div class="cart_item_text">1</div>
-										</div>
-										<div class="cart_item_price cart_info_col">
-											<div class="cart_item_title">Price</div>
-											<div class="cart_item_text">$2000</div>
-										</div>
-										<div class="cart_item_total cart_info_col">
-											<div class="cart_item_title">Total</div>
-											<div class="cart_item_text">$2000</div>
-										</div>
-									</div>
-								</li>
 								
 							</ul>
 						</div>
@@ -79,13 +70,13 @@
 						<div class="order_total">
 							<div class="order_total_content text-md-right">
 								<div class="order_total_title">Order Total:</div>
-								<div class="order_total_amount">$2000</div>
+								<div class="order_total_amount">${totalPrice}</div>
 							</div>
 						</div>
 
 						<div class="cart_buttons">
-							<button type="button" class="button cart_button_clear">Add to Cart</button>
-							<button type="button" class="button cart_button_checkout">Add to Cart</button>
+							<button type="button" onclick="window.location.href='/FinalProject/index';" class="button cart_button_clear">Shop more</button>
+							<button type="button" onclick="window.location.href='/FinalProject/checkout';" class="button cart_button_checkout">Order</button>
 						</div>
 					</div>
 				</div>

@@ -6,11 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import org.springframework.stereotype.Component;
+
 import com.db.DBConnection;
 import com.model.Category;
 import com.model.Item;
 
-public class CategoryDAO {
+@Component
+public class CategoryDAO implements ICategoryDAO{
 
 	private static final String ALL_CATEGORIES = "select name, category_id from category";
 	private static final String GET_CATEGORY_BY_ID = "SELECT * from category WHERE id = ?";
@@ -62,11 +65,11 @@ public class CategoryDAO {
 		return category;
 	}
 
-	public static CategoryDAO getInstance() throws SQLException {
-		if (cat == null) {
-			cat = new CategoryDAO();
-		}
-		return cat;
-	}
+//	public static CategoryDAO getInstance() throws SQLException {
+//		if (cat == null) {
+//			cat = new CategoryDAO();
+//		}
+//		return cat;
+//	}
 
 }
