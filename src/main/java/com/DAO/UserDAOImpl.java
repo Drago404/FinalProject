@@ -151,6 +151,7 @@ public class UserDAOImpl implements UserDAO {
 					if(is_deleted) {
 						user.setDeleted(true);
 					}
+					//synchr
 					allUsers.put(fullName, is_deleted);
 					
 				}

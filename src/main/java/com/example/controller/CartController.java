@@ -42,8 +42,8 @@ public class CartController {
 	@Autowired
 	private IitemDAO itemDAO;
 
-	// @Autowired
-	// private IOrderEmail orderEmail;
+	 @Autowired
+	 private OrderEmail orderEmail;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/addItem")
 	public String addItem(Model model, @RequestParam(value = "itemId", required = false) String id,
@@ -182,7 +182,7 @@ public class CartController {
 						Integer.parseInt(session.getAttribute("id").toString()), items);
 				orderDAO.makeOrder(order);
 
-				// orderEmail.sendMail(email, order);
+				 orderEmail.sendMail(email, order);
 
 			} catch (MailException | OrderException e) {
 				// TODO Auto-generated catch block

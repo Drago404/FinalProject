@@ -115,7 +115,7 @@
 								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
 									<div class="cart_icon">
 										<img src="images/cart.png" alt="">
-										<div class="cart_count"><span>10</span></div>
+										<div class="cart_count"><span></span></div>
 									</div>
 									<div class="cart_content">
 										<div class="cart_text"><a href="http://localhost:8080/FinalProject/cart">Cart</a></div>
@@ -177,16 +177,49 @@
 			<!--		<div class="main_nav_menu ml-auto">   -->		
 								<ul class="standard_dropdown main_nav_dropdown" >
 									<li class="hassubs" >
-										<a href="#">Телевизори и аудио<i class="fas fa-chevron-down"></i></a>
+										<a href="#">TV and audio<i class="fas fa-chevron-down"></i></a>
 										<ul>
 											<li>
-												<a href="#">Телевизори<i class="fas fa-chevron-down"></i></a>
+												<a href="#">TV<i class="fas fa-chevron-down"></i></a>
 												<ul>
-													<li><a href="http://localhost:8080/FinalProject/tv">Всички телевизори<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="http://localhost:8080/FinalProject/tv">All TVs<i class="fas fa-chevron-down"></i></a></li>
 													<li><a href="#">LG<i class="fas fa-chevron-down"></i></a></li>
 													<li><a href="#">NEO<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">PHILIPS<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">SAMSUNG<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="#">Philips<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="#">Samsung<i class="fas fa-chevron-down"></i></a></li>
+												</ul>
+											</li>
+											<li><a href="#">TV Accessories<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="#">Audio Systems<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="#">Audio Accessories<i class="fas fa-chevron-down"></i></a></li>
+										</ul>
+									</li>
+									<li class="hassubs">
+										<a href="#">Computers and perifery<i class="fas fa-chevron-down"></i></a>
+										<ul>
+											<li>
+												<a href="#">Laptops<i class="fas fa-chevron-down"></i></a>
+												<ul>
+													<li><a href="http://localhost:8080/FinalProject/laptop"">All Laptops<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="#">Acer<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="#">Apple<i class="fas fa-chevron-down"></i></a></li>
+												</ul>
+											</li>
+											<li><a href="#">Computers<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="#">Peripheral devices<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="#">Printers<i class="fas fa-chevron-down"></i></a></li>
+										</ul>
+									</li>
+									
+									<li class="hassubs">
+										<a href="#">Phones and tablets<i class="fas fa-chevron-down"></i></a>
+										<ul>
+											<li>
+												<a href="#">Mobile phones<i class="fas fa-chevron-down"></i></a>
+												<ul>
+													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
 												</ul>
 											</li>
 											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
@@ -195,7 +228,7 @@
 										</ul>
 									</li>
 									<li class="hassubs">
-										<a href="#">Компютри и периферия<i class="fas fa-chevron-down"></i></a>
+										<a href="#">Electric appliances<i class="fas fa-chevron-down"></i></a>
 										<ul>
 											<li>
 												<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
@@ -211,42 +244,9 @@
 										</ul>
 									</li>
 									
-									<li class="hassubs">
-										<a href="#">Телефони и таблети<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li>
-												<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-										</ul>
-									</li>
-									<li class="hassubs">
-										<a href="#">Електроуреди<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li>
-												<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-										</ul>
-									</li>
-									
 									
 									<li class="hassubs">
-										<a href="#">Pages<i class="fas fa-chevron-down"></i></a>
+										<a href="#">Photo and video<i class="fas fa-chevron-down"></i></a>
 										<ul>
 											<li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
