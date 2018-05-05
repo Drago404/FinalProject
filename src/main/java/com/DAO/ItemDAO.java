@@ -23,16 +23,23 @@ public class ItemDAO implements IitemDAO{
 			+ "values(?, ?, ?, ?, ?, ?,?) ";
 	private static final String SELECT_SPECIFIC_ITEM = "SELECT * from items WHERE id = ?";
 	private static final String SELECT_ITEM_BY_NAME = "SELECT * FROM items WHERE name LIKE ?";
+	private static final String SELECT_ALL_CATEGORIES = "select id,name from category";
+	private static final String SELECT_ALL_BRANDS = "select id,name from brand";
 	private Connection conn;
 	public static Map<Long, Item> allItems;
+	private static Map<Long, String> allCategories;
+	private static Map<Long, String> allBrands;
+	
 
 	
-	/////////
+
 	private ICategoryDAO categoryDAO;
 
 	public ItemDAO() throws SQLException {
 		this.conn = DBConnection.getInstance().getConnection();
 		allItems = new HashMap<Long, Item>();
+		allCategories = new HashMap<Long, String>();
+		allBrands = new HashMap<Long, String>();
 	}
 
 
@@ -98,7 +105,6 @@ public class ItemDAO implements IitemDAO{
 			
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -142,7 +148,7 @@ public class ItemDAO implements IitemDAO{
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			int categoryId = categoryDAO.getAllCategories().get(i.getCategoryId());
+			long categoryId = categoryDAO.getAllCategories().get(i.getCategoryId());
 //			int brandId = categoryDAO.getAllCategories().get(i.getCategoryId());
 			stmt = conn.prepareStatement(ADD_PRODUCT);
 			stmt.setString(1, i.getName());
@@ -151,16 +157,19 @@ public class ItemDAO implements IitemDAO{
 			stmt.setInt(4, i.getQuantity());
 			stmt.setString(5, i.getPictureUrl());
 			stmt.setLong(6, categoryId);
-			stmt.setLong(7, i.getCategoryId());
+			stmt.setLong(7, i.getBrandId());
 
 			rs = stmt.getGeneratedKeys();
 			rs.next();
-			long primaryKey = rs.getLong(1);
-			i.setId(primaryKey);
-			allItems.put(primaryKey, i);
+			
+			
 			synchronized (this) {
 				stmt.execute();
 			}
+			long primaryKey = rs.getLong(1);
+			i.setId(primaryKey);
+			allItems.put(primaryKey, i);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -172,6 +181,39 @@ public class ItemDAO implements IitemDAO{
 			}
 
 		}
+	}
+	
+	
+	public HashMap<Long, String> getAllCategories(){
+		try {
+			PreparedStatement stmt = conn.prepareStatement(SELECT_ALL_CATEGORIES);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Long id = rs.getLong("id");
+				String name = rs.getString("name");
+				allCategories.put(id, name);
+			}
+			return (HashMap<Long, String>) allCategories;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public HashMap<Long, String> getAllBrands(){
+		try {
+			PreparedStatement stmt = conn.prepareStatement(SELECT_ALL_BRANDS);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Long id = rs.getLong("id");
+				String name = rs.getString("name");
+				allBrands.put(id, name);
+			}
+			return (HashMap<Long, String>) allBrands;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	

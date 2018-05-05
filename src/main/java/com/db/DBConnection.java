@@ -7,7 +7,7 @@ public class DBConnection {
 	private	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	private	static final String DB_URL = "jdbc:mysql://localhost:3306/technomarket";
 	private	static final String USER = "root";
-	private	static final String PASS = "1234";
+	private	static final String PASS = "7377";
 	private	static DBConnection db = null;
 	private	static Connection conn = null;
 	

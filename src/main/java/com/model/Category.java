@@ -10,7 +10,7 @@ public class Category {
 	
 	public Category(String name) {
 		this.id = id;
-		this.name = name;
+		setName(name);
 	}	
 	
 	public Category() {
@@ -39,10 +39,6 @@ public class Category {
 		} else
 			new CategoryException("invalid category name");
 
-	}
-
-
-	
-	
+	}	
 	
 }

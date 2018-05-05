@@ -37,6 +37,7 @@
 										<c:if test="${sessionScope.isAdmin}">
 											<div>
 												<a href="allUsers">All users</a>
+												<a href="newItem">Add item</a>
 											</div>
 										</c:if>
 								

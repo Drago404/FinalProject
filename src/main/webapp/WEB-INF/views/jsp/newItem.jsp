@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +14,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title> Checkout</title>
+    <title> Add new product</title>
 
     <!-- Favicon  -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -46,7 +48,13 @@
 
     <div id="wrapper">
 
-       
+       <select id="brandId" name="brandId">
+   <option value="1">Sony</option>
+   <option value="2">Acer</option>
+   <option value="3">Philips</option>
+   <option value="4">Neo</option>
+   <option value="5">Samsung</option>
+</select> 
 
         <!-- ****** Checkout Area Start ****** -->
         <div class="checkout_area section_padding_100">
@@ -57,67 +65,55 @@
                         <div class="checkout_details_area mt-50 clearfix">
 
                             <div class="cart-page-heading">
-                                <h5>Please enter the information of your Order</h5>
+                                <h5>Please enter the information of the new product</h5>
 
                             </div>
 
-                            <form action="./checkout" method="post">
+                            <form  method="post">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="first_name">First Name <span>*</span></label>
-                                        <input type="text" class="form-control" name="firstName" value="" required>
+                                        <label for="first_name">Name <span>*</span></label>
+                                        <input type="text" class="form-control" name="name" value="" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label for="last_name">Last Name <span>*</span></label>
-                                        <input type="text" class="form-control" name="lastName" value="" required>
+                                        <label for="last_name">Brand <span>*</span></label>
+                                        
+                                        <form:select path="brandId" name="brand" modelAttribute="theItem">
+					 					 <form:option value="NONE" label="--- Select ---" />
+					  							<form:options items="${brands}" />
+				       							</form:select>
+                                        
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <label for="phone_number">E-mail <span>*</span></label>
-                                        <input type="text" class="form-control" name="email"  value="">
+                                        <label for="phone_number">Price <span>*</span></label>
+                                        <input type="text" class="form-control" name="price"  value="">
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <label for="phone_number">Phone No <span>*</span></label>
-                                        <input type="text" class="form-control" name="phoneNumber"  value="">
+                                        <label for="phone_number">Quantity <span>*</span></label>
+                                        <input type="text" class="form-control" name="quantity"  value="">
                                     </div>
+                                    
                                     <div class="col-12 mb-3">
-                                        <label for="first_name">City <span>*</span></label>
-                                        <input type="text" class="form-control" name="city" value="" required>
+                                           <form:select path="categoryId" name="category" modelAttribute="theItem">
+					 					 <form:option value="NONE" label="--- Select ---" />
+					  							<form:options items="${categories}" />
+				       							</form:select>
                                     </div>
+                                    
+                                      <div class="col-12 mb-3">
+                                        <label for="phone_number">Description <span>*</span></label>
+                                        <input type="text" class="form-control" name="description"  value="">
+                                    </div>
+                                    
                                     <div class="col-12 mb-3">
-                                        <label for="last_name">Street <span>*</span></label>
-                                        <input type="text" class="form-control" name="street" value="" required>
+                                        <label for="last_name">Picture <span>*</span></label>
+                                        <input type="file" class="file" name="picture" value="" required accept="image/jpg, image/jpeg, image/png">
+                                        <button class="btn karl-checkout-btn">Browse</button>
                                     </div>
-                                     <div class="col-md-6 mb-3">
-                                        <label for="first_name">Post Code <span>*</span></label>
-                                        <input type="text" class="form-control" name="postCode" value="" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="last_name">Street Number </label>
-                                        <input type="text" class="form-control" name="streetNumber" value="" >
-                                    </div>
-                                     <div class="col-md-6 mb-3">
-                                        <label for="last_name">Block </label>
-                                        <input type="text" class="form-control" name="block" value="" >
-                                    </div>
-                                     <div class="col-md-6 mb-3">
-                                        <label for="last_name">Entrance </label>
-                                        <input type="text" class="form-control" name="enterance" value="" >
-                                    </div>
-                                     <div class="col-md-6 mb-3">
-                                        <label for="last_name">Floor </label>
-                                        <input type="text" class="form-control" name="floor" value="" >
-                                    </div>
-                                     <div class="col-md-6 mb-3">
-                                        <label for="last_name">Apartment </label>
-                                        <input type="text" class="form-control" name="apartment" value="" >
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="company">Additional information</label>
-                                        <input type="text" class="form-control" name="description" value="">
-                                    </div>
+                             
                                    
                                    
-                                   <button class="btn karl-checkout-btn">Place Order</button>
+                                   <button onclick="./addProduct" class="btn karl-checkout-btn">Add product</button>
                                     
                                 </div>
                             </form>
