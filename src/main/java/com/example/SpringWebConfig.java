@@ -1,13 +1,17 @@
 package com.example;
 
 import java.util.Locale;
+import java.util.Properties;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+
+
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -42,14 +46,14 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/vendor/**").addResourceLocations("/static/css/vendor/");
         
         
-//        registry.addResourceHandler("search/img/**").addResourceLocations("file:///C:\\items-images\\");
-//        registry.addResourceHandler("search/css/**").addResourceLocations("/static/css/");
-//        registry.addResourceHandler("search/pdfs/**").addResourceLocations("/static/css/pdf/");
-//        registry.addResourceHandler("search/js/**").addResourceLocations("/static/js/");
-//        registry.addResourceHandler("search/fonts/**").addResourceLocations("/static/css/fonts/");
-//        registry.addResourceHandler("search/styles/**").addResourceLocations("/static/css/styles/");
-//        registry.addResourceHandler("search/plugins/**").addResourceLocations("/static/css/plugins/");
-//        registry.addResourceHandler("search/images/**").addResourceLocations("/static/css/images/");
+        registry.addResourceHandler("search/img/**").addResourceLocations("file:///C:\\items-images\\");
+        registry.addResourceHandler("search/css/**").addResourceLocations("/static/css/");
+        registry.addResourceHandler("search/pdfs/**").addResourceLocations("/static/css/pdf/");
+        registry.addResourceHandler("search/js/**").addResourceLocations("/static/js/");
+        registry.addResourceHandler("search/fonts/**").addResourceLocations("/static/css/fonts/");
+        registry.addResourceHandler("search/styles/**").addResourceLocations("/static/css/styles/");
+        registry.addResourceHandler("search/plugins/**").addResourceLocations("/static/css/plugins/");
+        registry.addResourceHandler("search/images/**").addResourceLocations("/static/css/images/");
         
         
 //        registry.addResourceHandler("cart/img/**").addResourceLocations("file:///C:\\items-images\\");
@@ -107,6 +111,24 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		resolver.setDefaultLocale(Locale.ENGLISH);
 		return resolver;
 	}
+	
+	
+	@Bean
+	   public JavaMailSenderImpl mailSender() {
+
+	        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+	        
+	        javaMailSender.setUsername("technomarketshoporders@gmail.com");
+	        javaMailSender.setPassword("Technomarket1");
+	        javaMailSender.setProtocol("smtp");
+	        javaMailSender.setHost("smtp.gmail.com");
+	        javaMailSender.setPort(587);
+	        Properties properties = new Properties();
+	        properties.setProperty("mail.smtp.starttls.enable", "true");
+	        javaMailSender.setJavaMailProperties(properties);
+
+	        return javaMailSender;
+	    }
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {

@@ -38,12 +38,12 @@ public class CartController {
 
 	@Autowired
 	private IOrderDAO orderDAO;
-	
+
 	@Autowired
 	private IitemDAO itemDAO;
 
-	// @Autowired
-	// private IOrderEmail orderEmail;
+	@Autowired
+	private OrderEmail orderEmail;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/addItem")
 	public String addItem(Model model, @RequestParam(value = "itemId", required = false) String id,
@@ -52,7 +52,7 @@ public class CartController {
 
 		HttpSession session = request.getSession(false);
 		Cookie c = new Cookie((session.getAttribute("id")) + "&" + id, id.toString() + "&" + quantity.toString());
-		c.setMaxAge(1000);
+		c.setMaxAge(6000);
 
 		response.addCookie(c);
 
@@ -67,7 +67,7 @@ public class CartController {
 		List<Cookie> userCookies = new ArrayList<Cookie>();
 		float totalPrice = 0;
 
-		if (cookies.length > 1) {
+		if (cookies.length > 1 && session.getAttribute("id") != null) {
 			for (Cookie cookie : cookies) {
 
 				if (cookie.getName().split("&")[0].equals(session.getAttribute("id").toString())) {
@@ -109,7 +109,7 @@ public class CartController {
 		HttpSession session = request.getSession(false);
 		Cookie[] cookies = request.getCookies();
 		List<Cookie> userCookies = new ArrayList<Cookie>();
-		if (cookies.length > 1) {
+		if (cookies.length > 1 && session.getAttribute("id") != null) {
 			for (Cookie cookie : cookies) {
 
 				if (cookie.getName().split("&")[0].equals(session.getAttribute("id").toString())) {
@@ -160,20 +160,13 @@ public class CartController {
 				int id = Integer.parseInt(itemId);
 				int quantity = Integer.parseInt(itemQuantity);
 				items.put(id, quantity);
-				try {
-					Item item = itemDAO.getItem(id);
 
-					// Delete Cookie
-					// Cookie c = new Cookie(cookie.getName(), "");
-					// cookie.setMaxAge(0);
-					// response.addCookie(c);
+				// Delete Cookie
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
 
-					/// Update item quantity
+				/// Update item quantity
 
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
 			}
 
 			try {
@@ -182,9 +175,9 @@ public class CartController {
 						Integer.parseInt(session.getAttribute("id").toString()), items);
 				orderDAO.makeOrder(order);
 
-				// orderEmail.sendMail(email, order);
+				orderEmail.sendMail(email, order);
 
-			} catch (MailException | OrderException e) {
+			} catch (MailException | OrderException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -192,9 +185,15 @@ public class CartController {
 		} else {
 			return "redirect:login";
 		}
-		return "redirect:index";
+		return "redirect:successfulCheckout";
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/successfulCheckout")
+	public String successfulCheckout(Model model, HttpServletRequest request) {
 
+		return "successfulCheckout";
+	}
+	
 	private Integer stringToInteger(String string) {
 		return string != null && !string.isEmpty() ? Integer.parseInt(string) : null;
 	}

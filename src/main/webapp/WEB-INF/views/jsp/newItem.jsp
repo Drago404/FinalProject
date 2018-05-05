@@ -113,7 +113,7 @@
                              
                                    
                                    
-                                   <button onclick="./addProduct" class="btn karl-checkout-btn">Add product</button>
+                                   <button onclick="addProduct" class="btn karl-checkout-btn">Add product</button>
                                     
                                 </div>
                             </form>

@@ -33,10 +33,21 @@ public class CategoryController {
 		
 		model.addAttribute("newItem", new Item());
 		
-
-//		CategoryDAO catDao = CategoryDAO.getInstance();
-//		Category category = catDao.getCategory(1);
 		Category category = categoryDAO.getCategory(1);
+		
+		List<Item> items = itemDAO.getItemsByCategory(category);
+		model.addAttribute("items",items);
+			
+		// name of view deto shte gi pokazva
+		return "tv";
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/laptop")
+	public String laptop(Model model) throws SQLException {
+		
+		model.addAttribute("newItem", new Item());
+		
+		Category category = categoryDAO.getCategory(2);
 		
 		List<Item> items = itemDAO.getItemsByCategory(category);
 		model.addAttribute("items",items);
