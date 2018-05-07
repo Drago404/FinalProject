@@ -1,6 +1,7 @@
 package com.DAO;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import com.exceptions.UserException;
@@ -17,5 +18,11 @@ public interface UserDAO {
 	public Map<String, Boolean> getAllUsers() throws SQLException;
 
 	public boolean checkForAdmin(User user);
+	
+	void addToWishlist(int userId, int itemId) throws SQLException;
+
+	void removeFromWishlist(int userId, int itemId) throws SQLException;
+
+	List<Integer> getWishlist(int userId) throws SQLException;
 
 }

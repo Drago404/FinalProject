@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Cart</title>
+<title>Wishlist</title>
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
@@ -27,15 +27,15 @@
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
 					<div class="cart_container">
-						<div class="cart_title">Shopping Cart</div>
+						<div class="cart_title">Your Wishlist</div>
 						<div class="cart_items">
 							<ul class="cart_list">
 							<c:choose> 
-									<c:when	test = "${fn:length(items)==0}">
-										<div class="order_total_amount">Your cart is empty</div>
+									<c:when	test = "${fn:length(wishlist)==0}">
+										<div class="order_total_amount">Your wishlist is empty</div>
 									</c:when>
 									<c:otherwise>
-										<c:forEach items="${items}" var="item" varStatus="loop">
+										<c:forEach items="${wishlist}" var="item" varStatus="loop">
 								<li class="cart_item clearfix">
 									
 									<div class="cart_item_image"><a href="./${item.id}"><img src="${item.pictureUrl}" alt=""></a></div>
@@ -44,17 +44,14 @@
 											<div class="cart_item_title">Name</div>
 											<div class="cart_item_text">${item.name}</div>
 										</div>
-										<div class="cart_item_quantity cart_info_col">
-											<div class="cart_item_title">Quantity</div>
-											<div class="cart_item_text">${item.quantity}</div>
-										</div>
+
 										<div class="cart_item_price cart_info_col">
 											<div class="cart_item_title">Price</div>
 											<div class="cart_item_text">${item.price} лв.</div>
 										</div>
 										<div class="cart_item_price cart_info_col">
 										<div class="cart_item_title">
-											<button type="button" onclick="window.location.href='/FinalProject/removeItem?itemId=' + '${item.id}';" class="button cart_button_clear">X</button>
+											<button type="button" onclick="window.location.href='/FinalProject/removeWishlist?itemId=' + '${item.id}';" class="button cart_button_clear">X</button>
 										</div>
 										</div>
 									<!--  	<div class="cart_item_total cart_info_col">
@@ -73,18 +70,6 @@
 							</ul>
 						</div>
 						
-						<!-- Order Total -->
-						<div class="order_total">
-							<div class="order_total_content text-md-right">
-								<div class="order_total_title">Order Total:</div>
-								<div class="order_total_amount">${totalPrice}</div>
-							</div>
-						</div>
-
-						<div class="cart_buttons">
-							<button type="button" onclick="window.location.href='/FinalProject/index';" class="button cart_button_clear">Shop more</button>
-							<button type="button" onclick="window.location.href='/FinalProject/checkout';" class="button cart_button_checkout">Order</button>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -234,6 +219,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     	var form = document.getElementById('searchForm');
     	form.action = action_src ;	
 	}
-	</script>
+	</script>	
+
 </body>
 </html>

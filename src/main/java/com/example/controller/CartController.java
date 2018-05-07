@@ -27,6 +27,7 @@ import com.DAO.IOrderEmail;
 import com.DAO.IitemDAO;
 import com.DAO.ItemDAO;
 import com.DAO.OrderEmail;
+import com.DAO.UserDAO;
 import com.exceptions.OrderException;
 import com.fasterxml.jackson.annotation.JsonFormat.Value;
 import com.model.Item;
@@ -44,6 +45,8 @@ public class CartController {
 
 	@Autowired
 	private OrderEmail orderEmail;
+	
+	
 
 	@RequestMapping(method = RequestMethod.GET, value = "/addItem")
 	public String addItem(Model model, @RequestParam(value = "itemId", required = false) String id,
@@ -51,14 +54,30 @@ public class CartController {
 			HttpServletResponse response) throws SQLException {
 
 		HttpSession session = request.getSession(false);
-		Cookie c = new Cookie((session.getAttribute("id")) + "&" + id, id.toString() + "&" + quantity.toString());
-		c.setMaxAge(6000);
+		Cookie cookie = new Cookie((session.getAttribute("id")) + "&" + id, id.toString() + "&" + quantity.toString());
+		cookie.setMaxAge(6000);
 
-		response.addCookie(c);
+		response.addCookie(cookie);
 
 		return "redirect:./cart";
 	}
 
+	@RequestMapping(method = RequestMethod.GET, value = "/removeItem")
+	public String removeItem(Model model, @RequestParam(value = "itemId", required = false) String id,
+			HttpServletRequest request, HttpServletResponse response) throws SQLException {
+
+		HttpSession session = request.getSession(false);
+		Cookie cookie = new Cookie((session.getAttribute("id")) + "&" + id, "");
+		cookie.setMaxAge(0);
+
+		response.addCookie(cookie);
+
+		return "redirect:./cart";
+	}
+
+	
+	
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/cart")
 	public String cart(Model model, HttpServletRequest request) {
 
@@ -75,7 +94,10 @@ public class CartController {
 				}
 			}
 
+			
 			List<Item> items = new ArrayList<Item>();
+
+			int totalItems = 0;
 
 			for (Cookie cookie : userCookies) {
 				String itemId = cookie.getValue().split("&")[0];
@@ -83,6 +105,8 @@ public class CartController {
 
 				int id = Integer.parseInt(itemId);
 				int quantity = Integer.parseInt(itemQuantity);
+				totalItems += quantity;
+
 				try {
 					Item item = itemDAO.getItem(id);
 					item.setQuantity(quantity);
@@ -96,11 +120,19 @@ public class CartController {
 				}
 			}
 
+			session.setAttribute("userItems", totalItems);
+			session.setAttribute("totalPrice", totalPrice);
+
 			model.addAttribute("totalPrice", totalPrice);
 			model.addAttribute("items", items);
-
+			return "cart";
+		} else{
+			
+			session.setAttribute("userItems", null);
+			session.setAttribute("totalPrice", null);
+			return "cart";
 		}
-		return "cart";
+		
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/checkout")
@@ -187,13 +219,13 @@ public class CartController {
 		}
 		return "redirect:successfulCheckout";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "/successfulCheckout")
 	public String successfulCheckout(Model model, HttpServletRequest request) {
 
 		return "successfulCheckout";
 	}
-	
+
 	private Integer stringToInteger(String string) {
 		return string != null && !string.isEmpty() ? Integer.parseInt(string) : null;
 	}

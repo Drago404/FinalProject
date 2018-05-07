@@ -160,8 +160,6 @@ public class ItemDAO implements IitemDAO{
 			stmt.setLong(6, i.getCategoryId());
 			stmt.setLong(7, i.getBrandId());
 
-		
-			
 			
 			synchronized (this) {
 				stmt.execute();

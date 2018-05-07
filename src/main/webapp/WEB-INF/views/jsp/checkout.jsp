@@ -65,19 +65,19 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="first_name">First Name <span>*</span></label>
-                                        <input type="text" class="form-control" name="firstName" value="" required>
+                                        <input type="text" class="form-control" name="firstName" value="${sessionScope.firstName}" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="last_name">Last Name <span>*</span></label>
-                                        <input type="text" class="form-control" name="lastName" value="" required>
+                                        <input type="text" class="form-control" name="lastName" value="${sessionScope.lastName}" required>
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="phone_number">E-mail <span>*</span></label>
-                                        <input type="text" class="form-control" name="email"  value="">
+                                        <input type="text" class="form-control" name="email"  value="${sessionScope.email}">
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="phone_number">Phone No <span>*</span></label>
-                                        <input type="text" class="form-control" name="phoneNumber"  value="">
+                                        <input type="text" class="form-control" name="phoneNumber"  value="" required>
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="first_name">City <span>*</span></label>
@@ -134,11 +134,9 @@
                             </div>
 
                             <ul class="order-details-form mb-4">
-                                <li><span>Product</span> <span>Total</span></li>
-                                <li><span>Cocktail Yellow dress</span> <span>$59.90</span></li>
-                                <li><span>Subtotal</span> <span>$59.90</span></li>
+                                <li><span>Number of products</span> <span>${sessionScope.userItems}</span></li>
                                 <li><span>Shipping</span> <span>Free</span></li>
-                                <li><span>Total</span> <span>$59.90</span></li>
+                                <li><span>Total price</span> <span>${sessionScope.totalPrice} lv.</span></li>
                             </ul>
 
 

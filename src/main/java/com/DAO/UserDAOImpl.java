@@ -12,11 +12,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import com.db.DBConnection;
 import com.exceptions.UserException;
+import com.model.Item;
 import com.model.Order;
 import com.model.User;
 
+@Component
 public class UserDAOImpl implements UserDAO {
 	
 	private	static final String INSERT_USER = "insert into users(first_name,last_name,email,password,date_of_birth) "
@@ -28,6 +32,9 @@ public class UserDAOImpl implements UserDAO {
 	private static final String GET_USER_ID = "select * from users where email=?";
 	private static final String DELETE_USER = "update users set deleted=1 where id=?";
 	private static final String IS_DELETED = "select deleted from users where email=?";
+	private static final String ADD_TO_WISHLIST = "INSERT INTO favourite_items (users_id,item_id) values(?,?)";
+	private static final String GET_WISHLIST = "SELECT (item_id) from  favourite_items WHERE users_id =?";
+	private static final String REMOVE_FROM_WISHLIST = "DELETE FROM favourite_items WHERE users_id =? AND item_id = ?;";
 	private Connection conn;
 	private HashMap<String, Boolean> allUsers;
 	private static UserDAOImpl userDao;
@@ -246,6 +253,41 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	
+	public void addToWishlist(int userId, int itemId) throws SQLException{
+		PreparedStatement stmt = conn.prepareStatement(ADD_TO_WISHLIST);
+		stmt.setInt(1, userId);
+		stmt.setInt(2, itemId);
+		
+		stmt.executeUpdate();
+		
+		
+		
+	}
+	
+	@Override
+	public void removeFromWishlist(int userId, int itemId) throws SQLException {
+		PreparedStatement stmt = conn.prepareStatement(REMOVE_FROM_WISHLIST);
+		stmt.setInt(1, userId);
+		stmt.setInt(2, itemId);
+		stmt.executeUpdate();
+		
+	}
+	
+	@Override
+	public List<Integer> getWishlist(int userId) throws SQLException {
+		PreparedStatement stmt = conn.prepareStatement(GET_WISHLIST);
+		stmt.setInt(1, userId);
+		List<Integer> wishlist = new ArrayList<Integer>();
+		ResultSet rs = stmt.executeQuery();
+		
+		while (rs.next()) {
+			
+			wishlist.add(rs.getInt("item_id"));
+		}
+		
+		
+		return wishlist;
+	}
 	
 	public static UserDAOImpl getInstance() throws SQLException {
 		if (userDao == null) {
@@ -253,5 +295,9 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return userDao;
 	}
+
+	
+
+	
 	
 }
