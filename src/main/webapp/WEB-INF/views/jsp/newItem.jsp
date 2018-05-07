@@ -48,13 +48,7 @@
 
     <div id="wrapper">
 
-       <select id="brandId" name="brandId">
-   <option value="1">Sony</option>
-   <option value="2">Acer</option>
-   <option value="3">Philips</option>
-   <option value="4">Neo</option>
-   <option value="5">Samsung</option>
-</select> 
+  
 
         <!-- ****** Checkout Area Start ****** -->
         <div class="checkout_area section_padding_100">
@@ -62,117 +56,92 @@
                 <div class="row">
 
                     <div class="col-12 col-md-6">
+                    <form method="post" enctype="multipart/form-data">
                         <div class="checkout_details_area mt-50 clearfix">
 
-                            <div class="cart-page-heading">
-                                <h5>Please enter the information of the new product</h5>
+							<div class="cart-page-heading">
+								<h5>Please enter the information of the new product</h5>
 
-                            </div>
+							</div>
+							
+							
+							
+								<div class="row">
+									<div class="col-md-6 mb-3">
+										<label for="first_name">Name <span>*</span></label> <input
+											type="text" class="form-control" name="name" value=""
+											required>
+									</div>
 
-                            <form  method="post">
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="first_name">Name <span>*</span></label>
-                                        <input type="text" class="form-control" name="name" value="" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="last_name">Brand <span>*</span></label>
-                                        
-                                        <form:select path="brandId" name="brand" modelAttribute="theItem">
-					 					 <form:option value="NONE" label="--- Select ---" />
-					  							<form:options items="${brands}" />
-				       							</form:select>
-                                        
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="phone_number">Price <span>*</span></label>
-                                        <input type="text" class="form-control" name="price"  value="">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="phone_number">Quantity <span>*</span></label>
-                                        <input type="text" class="form-control" name="quantity"  value="">
-                                    </div>
-                                    
-                                    <div class="col-12 mb-3">
-                                           <form:select path="categoryId" name="category" modelAttribute="theItem">
-					 					 <form:option value="NONE" label="--- Select ---" />
-					  							<form:options items="${categories}" />
-				       							</form:select>
-                                    </div>
-                                    
-                                      <div class="col-12 mb-3">
-                                        <label for="phone_number">Description <span>*</span></label>
-                                        <input type="text" class="form-control" name="description"  value="">
-                                    </div>
-                                    
-                                    <div class="col-12 mb-3">
-                                        <label for="last_name">Picture <span>*</span></label>
-                                        <input type="file" class="file" name="picture" value="" required accept="image/jpg, image/jpeg, image/png">
-                                        <button class="btn karl-checkout-btn">Browse</button>
-                                    </div>
-                             
-                                   
-                                   
-                                   <button onclick="addProduct" class="btn karl-checkout-btn">Add product</button>
-                                    
-                                </div>
-                            </form>
+									<div class="col-md-6">
+										<label >Brand <span>*</span></label> <FONT SIZE="4"> 
+											 <select name="brand" style="width: 100px; display: inline-block;">
+
+												<option value="NONE">--- Select ---</option> 
+												<option value="Sony">Sony</option>
+												<option value="Acer">Acer</option>
+												<option value="Philips">Philips</option>
+												<option value="Neo">Neo</option>
+												<option value="Samsung">Samsung</option>
+										</select>
+
+
+										</FONT>
+
+									</div>
+
+									<div class="col-12 mb-3">
+										<label for="phone_number">Price <span>*</span></label> <input
+											type="text" class="form-control" name="price" value="">
+									</div>
+									<div class="col-12 mb-3">
+										<label for="phone_number">Quantity <span>*</span></label> <input
+											type="text" class="form-control" name="quantity" value="">
+									</div>
+
+
+								</div>
+								
+									<div class="col-12 mb-3">
+										<label >Category <span>*</span></label> <FONT
+											 SIZE="4"> <select name="category" style="width: 100px; display: inline-block;">
+	
+												<option value="NONE">--- Select ---</option>
+												<option value="TV">TV</option>
+												<option value="laptop">laptop</option>
+											
+										</select>
+
+
+										</FONT>
+
+									</div>
+
+								<div class="col-12 mb-3">
+									<label for="phone_number">Description <span>*</span></label> <input
+										type="text" class="form-control" name="description" value="">
+								</div>
+
+								<div class="col-12 mb-3">
+									<label for="last_name">Picture <span>*</span></label> <input
+										type="file" class="file" name="file" value="" required
+										accept="image/jpg, image/jpeg, image/png">
+
+								</div>
+
+
+
+								<button onclick="addProduct" class="btn karl-checkout-btn">Add
+									product</button>
+						</div>
+                           </form>
                         </div>
                     </div>
                     
-                    
-                    <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
-                        <div class="order-details-confirmation">
-
-                            <div class="cart-page-heading">
-                                <h5>Your Order</h5>
-                                <p>The Details</p>
-                            </div>
-
-                            <ul class="order-details-form mb-4">
-                                <li><span>Product</span> <span>Total</span></li>
-                                <li><span>Cocktail Yellow dress</span> <span>$59.90</span></li>
-                                <li><span>Subtotal</span> <span>$59.90</span></li>
-                                <li><span>Shipping</span> <span>Free</span></li>
-                                <li><span>Total</span> <span>$59.90</span></li>
-                            </ul>
-
-
-                            <div id="accordion" role="tablist" class="mb-4">
-                               
-                                <div class="card">
-                                    <div class="card-header" role="tab" id="headingTwo">
-                                        <h6 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-circle-o mr-3"></i>cash on delievery</a>
-                                        </h6>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quis in veritatis officia inventore, tempore provident dignissimos.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" role="tab" id="headingThree">
-                                        <h6 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class="fa fa-circle-o mr-3"></i>credit card</a>
-                                        </h6>
-                                    </div>
-                                    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse quo sint repudiandae suscipit ab soluta delectus voluptate, vero vitae</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-<!--
-                            <a href="#" class="btn karl-checkout-btn">Place Order</a> -->
-                        </div>
-                    </div>   
-
                 </div>
             </div>
         </div>
+        
         <!-- ****** Checkout Area End ****** -->
 
         <!-- ****** Footer Area Start ****** -->
