@@ -133,20 +133,16 @@
 									<div class="product_price">${item.price} лв.</div>
 									<div class="product_name"><div><a href="./${item.id}" tabindex="0">${item.name}</a></div></div>
 								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
 								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
+								
 									<li class="product_mark product_new">new</li>
 								</ul>
 							</div>
 					</c:forEach>
-							<!-- Product Item -->
-							
+							<!-- Product Item -->	
+						
 
-							
-						</div>
-
-						<!-- Shop Page Navigation -->
+						<!-- Shop Page Navigation 
 
 						<div class="shop_page_nav d-flex flex-row">
 							<div class="page_prev d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-left"></i></div>
@@ -159,7 +155,7 @@
 							</ul>
 							<div class="page_next d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-right"></i></div>
 						</div>
-
+				-->
 					</div>
 
 				</div>

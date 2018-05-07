@@ -28,17 +28,17 @@ public class ItemController  {
 	private IitemDAO itemDAO;
 	
 	@RequestMapping(method=RequestMethod.GET, value="/{id}")
-	public String getItem(Model model, @PathVariable Integer id, HttpServletRequest request, HttpServletResponse response)
-			throws SQLException {
+	public String getItem(Model model, @PathVariable Integer id, HttpServletRequest request, HttpServletResponse response){
 		
-
-		
+		try{
 		
 		Item item = itemDAO.getItem(id);
 		
 		model.addAttribute(item);
 		
-		
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 		return "item";
 	}
@@ -46,13 +46,18 @@ public class ItemController  {
 	
 
 	@RequestMapping(method=RequestMethod.GET, value="/search/{text}")
-	public String searchItems(Model model,@RequestParam(value = "category", required = false) String id, @PathVariable("text") String text) throws SQLException {
+	public String searchItems(Model model, @PathVariable("text") String text) throws SQLException {
 		model.addAttribute("newItem", new Item());
 		
-
+		try{
+		
 		List<Item> items = itemDAO.getItemsByName(text);
 		
 		model.addAttribute("items",items);
+		
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 		return "search";
 	}
