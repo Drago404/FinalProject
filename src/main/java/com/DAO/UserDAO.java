@@ -21,8 +21,8 @@ public interface UserDAO {
 	
 	void addToWishlist(int userId, int itemId) throws SQLException;
 
-	List<Integer> getWishlist(int userId) throws SQLException;
-
 	void removeFromWishlist(int userId, int itemId) throws SQLException;
+
+	List<Integer> getWishlist(int userId) throws SQLException;
 
 }

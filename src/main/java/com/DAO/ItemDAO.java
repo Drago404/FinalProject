@@ -25,8 +25,13 @@ public class ItemDAO implements IitemDAO{
 	private static final String SELECT_ITEM_BY_NAME = "SELECT * FROM items WHERE name LIKE ?";
 	private static final String SELECT_ALL_CATEGORIES = "select id,name from category";
 	private static final String SELECT_ALL_BRANDS = "select id,name from brand";
+
 	private static final String UPDATE_QUANTITY = "UPDATE items SET quantity = quantity - ? Where id = ?";
 	
+
+	private static final String GET_BRAND_ID = "select id from brand where name=?";
+	private static final String GET_CATEGORY_ID = "select id from category where name=?";
+
 	private Connection conn;
 	public static Map<Long, Item> allItems;
 	private static Map<Long, String> allCategories;
@@ -159,39 +164,29 @@ public class ItemDAO implements IitemDAO{
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			long categoryId = categoryDAO.getAllCategories().get(i.getCategoryId());
-//			int brandId = categoryDAO.getAllCategories().get(i.getCategoryId());
+			
 			stmt = conn.prepareStatement(ADD_PRODUCT);
 			stmt.setString(1, i.getName());
 			stmt.setFloat(2, i.getPrice());
 			stmt.setString(3, i.getDescription());
 			stmt.setInt(4, i.getQuantity());
 			stmt.setString(5, i.getPictureUrl());
-			stmt.setLong(6, categoryId);
+			stmt.setLong(6, i.getCategoryId());
 			stmt.setLong(7, i.getBrandId());
 
-			rs = stmt.getGeneratedKeys();
-			rs.next();
-			
 			
 			synchronized (this) {
 				stmt.execute();
 			}
+			rs = stmt.getGeneratedKeys();
+			rs.next();
 			long primaryKey = rs.getLong(1);
 			i.setId(primaryKey);
 			allItems.put(primaryKey, i);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				stmt.close();
-				rs.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
+		} 
 	}
 	
 	
@@ -226,6 +221,39 @@ public class ItemDAO implements IitemDAO{
 		}
 		return null;
 	}
+	
+	
+	public long getIDbyBrandName(String name) {
+		PreparedStatement stmt;
+		try {
+			stmt = conn.prepareStatement(GET_BRAND_ID);
+			stmt.setString(1, name);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				long id = rs.getLong("id");
+				return id;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public long getIDbyCategoryName(String name) {
+		PreparedStatement stmt;
+		try {
+			stmt = conn.prepareStatement(GET_CATEGORY_ID);
+			stmt.setString(1, name);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				long id = rs.getLong("id");
+				return id;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	} 
 
 
 

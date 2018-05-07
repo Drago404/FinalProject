@@ -289,9 +289,6 @@ public class UserDAOImpl implements UserDAO {
 		return wishlist;
 	}
 	
-	
-	
-	
 	public static UserDAOImpl getInstance() throws SQLException {
 		if (userDao == null) {
 			userDao = new UserDAOImpl();
