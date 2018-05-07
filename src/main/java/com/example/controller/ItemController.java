@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.DAO.IitemDAO;
 import com.DAO.ItemDAO;
@@ -45,7 +46,7 @@ public class ItemController  {
 	
 
 	@RequestMapping(method=RequestMethod.GET, value="/search/{text}")
-	public String searchItems(Model model, @PathVariable("text") String text) throws SQLException {
+	public String searchItems(Model model,@RequestParam(value = "category", required = false) String id, @PathVariable("text") String text) throws SQLException {
 		model.addAttribute("newItem", new Item());
 		
 

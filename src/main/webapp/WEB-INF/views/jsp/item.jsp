@@ -102,7 +102,9 @@
 										<button type="button" onclick="window.location.href='/FinalProject/addItem?itemId=' + '${item.id}' +'&itemQuantity=' + quantityInput() ;" class="button cart_button">Add to Cart</button>
 									</c:otherwise>
 								</c:choose>
-									<div class="product_fav"><i class="fas fa-heart"></i></div>
+								<button type="button" onclick="window.location.href='/FinalProject/addWishlist?itemId=' + '${item.id}';" class="button cart_button">Add to wishlist</button>
+								<!-- 	<div class="product_fav" onclick="window.location.href='/FinalProject/addWishlist?itemId= + '${item.id}';"><i class="fas fa-heart"></i></div>
+								 -->
 								</div>
 								
 							</form>
