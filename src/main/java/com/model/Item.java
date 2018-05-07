@@ -24,6 +24,16 @@ public class Item {
 		setCategoryId(categoryId);
 		setBrandId(brandId);
 	}
+	
+	public Item(String name, long brandId, float price, int quantity, long categoryId, String description, String pictureUrl) {
+		setName(name);
+		setBrandId(brandId);
+		setPrice(price);
+		setQuantity(quantity);
+		setCategoryId(categoryId);
+		setDescription(description);
+		setPictureUrl(pictureUrl);
+	}
 
 	public Item() {
 
