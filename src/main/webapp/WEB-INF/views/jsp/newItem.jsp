@@ -109,6 +109,7 @@
 												<option value="NONE">--- Select ---</option>
 												<option value="TV">TV</option>
 												<option value="laptop">laptop</option>
+												<option value="phone">phone</option>
 											
 										</select>
 

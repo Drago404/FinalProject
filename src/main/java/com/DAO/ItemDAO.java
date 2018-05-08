@@ -25,7 +25,7 @@ public class ItemDAO implements IitemDAO{
 	private static final String SELECT_ITEM_BY_NAME = "SELECT * FROM items WHERE name LIKE ?";
 	private static final String SELECT_ALL_CATEGORIES = "select id,name from category";
 	private static final String SELECT_ALL_BRANDS = "select id,name from brand";
-
+	private static final String EDIT_PRODUCT = "update items set name=?, price=?, description=?, quantity=? where id=?";
 	private static final String UPDATE_QUANTITY = "UPDATE items SET quantity = quantity - ? Where id = ?";
 	private static final String UPDATE_PICTURE = "update items set pictureUrl=? where id=?";
 
@@ -267,7 +267,37 @@ public class ItemDAO implements IitemDAO{
 		}
 	}
 
-
+	@Override
+	public void editProduct(long id, String name, float price, String description, int quantity){
+		PreparedStatement stmt;
+		try {
+			stmt = conn.prepareStatement(EDIT_PRODUCT);
+			
+			stmt.setString(1, name);
+			stmt.setFloat(2, price);
+			stmt.setString(3, description);
+			stmt.setInt(4, quantity);
+			stmt.setLong(5, id);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Override
+	public void updatePicture(long id, String picture) {
+		
+		try {
+			PreparedStatement stmt = conn.prepareStatement(UPDATE_PICTURE);
+			stmt.setString(1, picture);
+			stmt.setLong(2, id);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 	@Override
 	public int getItemQuantity(int itemId) {

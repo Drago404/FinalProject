@@ -37,7 +37,6 @@ public class ItemController  {
 		model.addAttribute(item);
 		
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		
 		return "item";
@@ -56,10 +55,12 @@ public class ItemController  {
 		model.addAttribute("items",items);
 		
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		
 		return "search";
 	}
+	
+	
+	
 
 }
