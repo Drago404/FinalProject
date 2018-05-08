@@ -55,7 +55,7 @@ public class AdminController {
 			HashMap<String, Boolean> users = (HashMap<String, Boolean>) userDAO.getAllUsers();
 			model.addAttribute("users", users);
 		} catch (Exception e) {
-			// TODO: handle exception
+			return "error";
 		}
 		return "allUsers";
 	}
@@ -68,13 +68,11 @@ public class AdminController {
 			UserDAOImpl.getInstance().deleteUser(email);
 			User user = UserDAOImpl.getInstance().getUserByEmail(email);
 			user.setDeleted(true);
-			// model.addAttribute("deleted", user.isDeleted());
+			model.addAttribute("deleted", user.isDeleted());
 			redirectAttributes.addFlashAttribute("deleted", user.isDeleted());
-
 		} catch (Exception e) {
-
+			return "error";
 		}
-
 		return "redirect:allUsers";
 
 	}
@@ -84,56 +82,6 @@ public class AdminController {
 
 		return "newItem";
 	}
-
-	// private File convertProductPicture(MultipartFile file) throws IOException
-	// {
-	// File convFile = new File("C:\\items-images\\" +
-	// file.getOriginalFilename());
-	// convFile.createNewFile();
-	// FileOutputStream fos = new FileOutputStream(convFile);
-	// fos.write(file.getBytes());
-	// fos.close();
-	// return convFile;
-	// }
-	//
-	//
-	// @RequestMapping(value = {"/newItem"}, method = RequestMethod.POST,
-	// consumes = {"application/x-www-form-urlencoded"})
-	// public String addProduct(Model model, MultipartHttpServletRequest
-	// request, @ModelAttribute("theItem") Item item,
-	// @RequestParam("file") MultipartFile picture,
-	// @RequestParam("brand") String brand,
-	// @RequestParam("category") String category) {
-	//
-	//
-	//
-	// HashMap<Long, String> categories = itemDao.getAllCategories();
-	// model.addAttribute("categories", categories);
-	// HashMap<Long, String> brands = itemDao.getAllBrands();
-	// model.addAttribute("brands", brands);
-	//
-	// long brandId = itemDao.getIDbyBrandName(brand);
-	// long categoryId = itemDao.getIDbyCategoryName(category);
-	// String name = request.getParameter("name");
-	// float price = Float.parseFloat(request.getParameter("price"));
-	// int quantity = Integer.parseInt(request.getParameter("quantity"));
-	// String description = request.getParameter("description");
-	//
-	//
-	// String mimetype = picture.getOriginalFilename().split("\\.")[1];
-	// String type = mimetype.split("/")[0];
-	// if (!type.equals("jpg") && !type.equals("png") && !type.equals("jpeg"))
-	// return "addItem";
-	// try {
-	// File newFile = convertProductPicture(picture);
-	// Item product = new Item(name, brandId, price, quantity, categoryId,
-	// description, newFile.getPath());
-	// itemDao.addItem(product);
-	// } catch (Exception e) {
-	// return "addItem";
-	// }
-	// return "index";
-	// }
 
 	@RequestMapping(value = "/newItem", method = RequestMethod.POST)
 	public String addProduct(@RequestParam("file") MultipartFile file, HttpServletRequest request, Model model) {
@@ -157,9 +105,11 @@ public class AdminController {
 				stream.write(bytes);
 				stream.close();
 				String filePath = "img/" + file.getOriginalFilename();
+
 				if (!file.getOriginalFilename().endsWith("jpg") && !file.getOriginalFilename().endsWith("jpeg")
 						&& !file.getOriginalFilename().endsWith("png")) {
-					return "newItem";
+					return "error";
+
 				}
 
 				Item item = new Item(name, brandId, price, quantity, categoryId, description, filePath);
@@ -175,10 +125,10 @@ public class AdminController {
 				return "redirect:index";
 			} catch (Exception e) {
 				e.printStackTrace();
-				return "newItem";
+				return "error";
 			}
 		} else
-			return "newItem";
+			return "error";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/{id}")
@@ -186,27 +136,27 @@ public class AdminController {
 			HttpServletResponse response) {
 		try {
 
-//			if (Boolean.valueOf(session.getAttribute("isAdmin").toString())) {
-//			} else {
-//				return "error";
-//			}
-				String name = request.getParameter("item_name");
-				float price = Float.parseFloat(request.getParameter("item_price"));
-				String description = request.getParameter("item_description");
-				int quantity = Integer.parseInt(request.getParameter("item_quantity"));
+			// if (Boolean.valueOf(session.getAttribute("isAdmin").toString())) {
+			// } else {
+			// return "error";
+			// }
+			String name = request.getParameter("item_name");
+			float price = Float.parseFloat(request.getParameter("item_price"));
+			String description = request.getParameter("item_description");
+			int quantity = Integer.parseInt(request.getParameter("item_quantity"));
 
-				itemDao.editProduct(id, name, price, description, quantity);
-			
+			itemDao.editProduct(id, name, price, description, quantity);
+
 		} catch (Exception e) {
 			return "error";
 		}
-		return "redirect:/"+ id;
+		return "redirect:/" + id;
 	}
-	
-	
-	@RequestMapping(method = RequestMethod.POST ,value = "/changePic/{id}")
-	public String editPicture(@RequestParam("file") MultipartFile file, @PathVariable Integer id, HttpServletRequest request,
-			Model model) {
+
+	@RequestMapping(method = RequestMethod.POST, value = "/changePic/{id}")
+
+	public String editPicture(@RequestParam("file") MultipartFile file, @PathVariable Integer id,
+			HttpServletRequest request, Model model) {
 		String UPLOAD_FOLDER = "C:\\items-images\\";
 		if (!file.isEmpty()) {
 			try {
@@ -221,14 +171,13 @@ public class AdminController {
 						&& !file.getOriginalFilename().endsWith("png")) {
 					return "error";
 				}
-
 				itemDao.updatePicture(id, filePath);
-				return "redirect:/"+ id;
+				return "redirect:/" + id;
 			} catch (Exception e) {
 				return "error";
 			}
 		}
 		return "error";
 	}
-	
+
 }

@@ -67,15 +67,6 @@ public class CategoryController {
 		return "tv";
 	}
 	
-//	@RequestMapping(method=RequestMethod.GET, value="{id}")
-//	public String viewPatka(Model model, @PathVariable Integer id) throws SQLException {
-//		ItemDAO dao = ItemDAO.getInstance();
-//		Item item = dao.getItem(id);
-//		
-//		model.addAttribute(item);
-//		
-//		return "neo-led-49418-uhd-sw-09162977";
-//	}
 	
 	
 }
