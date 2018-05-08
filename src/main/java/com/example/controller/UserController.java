@@ -110,7 +110,7 @@ public class UserController {
 			session.setAttribute("lastName", user.getLastName());
 			session.setAttribute("email", user.getEmail());
 			session.setAttribute("isAdmin", user.isAdmin());
-			session.setAttribute("wishlistNumber", userDAO.getWishlist((int) user.getId()).size());
+			//session.setAttribute("wishlistNumber", userDAO.getWishlist((int) user.getId()).size());
 			
 			//check for admin
 			if(UserDAOImpl.getInstance().checkForAdmin(user)) {
@@ -127,6 +127,66 @@ public class UserController {
 		return "redirect:index";
 	}
 	
+
+//	@RequestMapping(method = RequestMethod.GET, value = "/wishlist")
+//	public String wishlist(Model model, HttpServletRequest request) {
+//		
+//		HttpSession session = request.getSession(false);
+//		int userId = Integer.parseInt(session.getAttribute("id").toString());
+//		
+//		List<Item> wishlist = new ArrayList<Item>();
+//		try {
+//			List<Integer> itemsIds = userDAO.getWishlist(userId);
+//			for(Integer id : itemsIds){
+//				Item item =itemDAO.getItem(id.intValue());
+//				wishlist.add(item);
+//			}
+//			session.setAttribute("wishlistNumber", itemsIds.size());
+//			model.addAttribute("wishlist",wishlist);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		return "wishlist";
+//	}
+//	
+//	@RequestMapping(method = RequestMethod.GET, value = "/addWishlist")
+//	public String addToWishlist(Model model, HttpServletRequest request,@RequestParam(value = "itemId", required = false) String id) {
+//		
+//		HttpSession session = request.getSession(false);
+//		
+//		int userId = Integer.parseInt(session.getAttribute("id").toString());
+//		int itemId = Integer.parseInt(id);
+//		
+//		try {
+//			userDAO.addToWishlist(userId, itemId);
+//		} catch (SQLException e) {
+//
+//			e.printStackTrace();
+//		}
+//		
+//		return "redirect:wishlist";
+//	}
+//	
+//	@RequestMapping(method = RequestMethod.GET, value = "/removeWishlist")
+//	public String removeItem(Model model, @RequestParam(value = "itemId", required = false) String id,
+//			HttpServletRequest request, HttpServletResponse response) {
+//
+//		HttpSession session = request.getSession(false);
+//		int userId = Integer.parseInt(session.getAttribute("id").toString());
+//		int itemId = Integer.parseInt(id);
+//		
+//		try {
+//			userDAO.removeFromWishlist(userId,itemId);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		return "redirect:wishlist";
+//	}
+
 	@RequestMapping(method = RequestMethod.GET, value = "/wishlist")
 	public String wishlist(Model model, HttpServletRequest request) {
 		try {
@@ -165,7 +225,6 @@ public class UserController {
 
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		
 		return "redirect:wishlist";
@@ -183,13 +242,12 @@ public class UserController {
 	
 			userDAO.removeFromWishlist(userId,itemId);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 
 		return "redirect:wishlist";
 	}
+
 	
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/error")
