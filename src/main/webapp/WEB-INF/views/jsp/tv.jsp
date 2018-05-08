@@ -112,7 +112,8 @@
 										<ul>
 											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "original-order" }'>highest rated</li>
 											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>name</li>
-											<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "price" }'>price</li>
+											<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "price" }'>lowest price</li>
+											<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "descending" }'>highest price</li>
 										</ul>
 									</li>
 								</ul>
@@ -453,13 +454,7 @@
 <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script src="plugins/parallax-js-master/parallax.min.js"></script>
 <script src="js/shop_custom.js"></script>
-<script type="text/javascript">
-	function searchFunction(){
-    	var action_src = "http://localhost:8080/FinalProject/search/" + document.getElementsByName("txtSearch")[0].value;
-    	var form = document.getElementById('searchForm');
-    	form.action = action_src ;
-	}
-</script>
+<script src="js/search_product.js"></script>
 
 </body>
 </html>

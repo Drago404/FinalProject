@@ -55,14 +55,6 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("search/images/**").addResourceLocations("/static/css/images/");
         
         
-        registry.addResourceHandler("**/img/**").addResourceLocations("file:///C:\\items-images\\");
-        registry.addResourceHandler("**/css/**").addResourceLocations("/static/css/");
-        registry.addResourceHandler("**/pdfs/**").addResourceLocations("/static/css/pdf/");
-        registry.addResourceHandler("**/js/**").addResourceLocations("/static/js/");
-        registry.addResourceHandler("**/fonts/**").addResourceLocations("/static/css/fonts/");
-        registry.addResourceHandler("**/styles/**").addResourceLocations("/static/css/styles/");
-        registry.addResourceHandler("**/plugins/**").addResourceLocations("/static/css/plugins/");
-        registry.addResourceHandler("**/images/**").addResourceLocations("/static/css/images/");
         
         
 //        registry.addResourceHandler("cart/img/**").addResourceLocations("file:///C:\\items-images\\");
@@ -74,14 +66,14 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 //        registry.addResourceHandler("cart/plugins/**").addResourceLocations("/static/css/plugins/");
 //        registry.addResourceHandler("cart/images/**").addResourceLocations("/static/css/images/");
         
-        registry.addResourceHandler("checkout/img/**").addResourceLocations("file:///C:\\items-images\\");
-        registry.addResourceHandler("checkout/css/**").addResourceLocations("/static/css/");
-        registry.addResourceHandler("checkout/pdfs/**").addResourceLocations("/static/css/pdf/");
-        registry.addResourceHandler("checkout/js/**").addResourceLocations("/static/js/");
-        registry.addResourceHandler("checkout/fonts/**").addResourceLocations("/static/css/fonts/");
-        registry.addResourceHandler("checkout/styles/**").addResourceLocations("/static/css/styles/");
-        registry.addResourceHandler("checkout/plugins/**").addResourceLocations("/static/css/plugins/");
-        registry.addResourceHandler("checkout/images/**").addResourceLocations("/static/css/images/");
+//        registry.addResourceHandler("checkout/img/**").addResourceLocations("file:///C:\\items-images\\");
+//        registry.addResourceHandler("checkout/css/**").addResourceLocations("/static/css/");
+//        registry.addResourceHandler("checkout/pdfs/**").addResourceLocations("/static/css/pdf/");
+//        registry.addResourceHandler("checkout/js/**").addResourceLocations("/static/js/");
+//        registry.addResourceHandler("checkout/fonts/**").addResourceLocations("/static/css/fonts/");
+//        registry.addResourceHandler("checkout/styles/**").addResourceLocations("/static/css/styles/");
+//        registry.addResourceHandler("checkout/plugins/**").addResourceLocations("/static/css/plugins/");
+//        registry.addResourceHandler("checkout/images/**").addResourceLocations("/static/css/images/");
 //        
         
         

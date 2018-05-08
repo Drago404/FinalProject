@@ -470,29 +470,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="js/product_custom.js"></script>
-<script type="text/javascript">
-	function searchFunction(){
-    	var action_src = "http://localhost:8080/FinalProject/search/" + document.getElementsByName("txtSearch")[0].value;
-    	var form = document.getElementById('searchForm');
-    	form.action = action_src ;	
-	}
+<script src="js/search_product.js"></script>
+<script type="text/javascript">	
 	  function quantityInput(){
 		  return document.getElementById('quantity_input').value;
 	  }
-	  function nameChange(){
-		  return document.getElementById('item_name').value;
-	  }
-	  function descriptionChange(){
-		  return document.getElementById('item_description').value;
-	  }
-	  function quantityChange(){
-		  return document.getElementById('item_quantity').value;
-	  }
-	  function quantityChange(){
-		  return document.getElementById('item_quantity').value;
-	  }
-	</script>
 </script>
+
 
 </body>
 </html>

@@ -71,6 +71,6 @@ Delete user by email
 <script src="plugins/slick-1.8.0/slick.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="js/custom.js"></script>
-<script type="text/javascript"></script>
+<script src="js/search_product.js"></script>
 </body>
 </html>
