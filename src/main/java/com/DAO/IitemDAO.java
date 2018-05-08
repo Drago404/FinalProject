@@ -14,5 +14,9 @@ public interface IitemDAO {
 
 	public List<Item> getItemsByName(String text);
 
+	public int getItemQuantity(int itemId);
+
+	public void updateItemQuantity(int id, int quantity) throws SQLException;
+
 	
 }

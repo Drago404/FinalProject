@@ -25,8 +25,13 @@ public class ItemDAO implements IitemDAO{
 	private static final String SELECT_ITEM_BY_NAME = "SELECT * FROM items WHERE name LIKE ?";
 	private static final String SELECT_ALL_CATEGORIES = "select id,name from category";
 	private static final String SELECT_ALL_BRANDS = "select id,name from brand";
+
+	private static final String UPDATE_QUANTITY = "UPDATE items SET quantity = quantity - ? Where id = ?";
+	
+
 	private static final String GET_BRAND_ID = "select id from brand where name=?";
 	private static final String GET_CATEGORY_ID = "select id from category where name=?";
+
 	private Connection conn;
 	public static Map<Long, Item> allItems;
 	private static Map<Long, String> allCategories;
@@ -111,6 +116,15 @@ public class ItemDAO implements IitemDAO{
 		}
 		return null;
 		
+	}
+	
+	@Override
+	public void updateItemQuantity(int id, int quantity) throws SQLException {
+		PreparedStatement stmt = conn.prepareStatement(UPDATE_QUANTITY);
+		stmt.setInt(1, quantity);
+		stmt.setInt(2, id);
+		stmt.executeUpdate();
+		stmt.close();
 	}
 
 	public Item getItem(int itemId) throws SQLException {
@@ -240,6 +254,18 @@ public class ItemDAO implements IitemDAO{
 		}
 		return 0;
 	} 
+
+
+
+	@Override
+	public int getItemQuantity(int itemId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+
 
 	
 

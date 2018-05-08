@@ -21,7 +21,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.DAO.ItemDAO;
+
+import com.DAO.UserDAO;
+
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.DAO.UserDAOImpl;
 import com.exceptions.UserException;
 import com.model.Item;
@@ -32,19 +36,23 @@ public class AdminController {
 	
 	@Autowired
 	private ItemDAO itemDao;
+	
+	@Autowired
+	private UserDAO userDAO;
 
 	@RequestMapping(method=RequestMethod.GET, value="/allUsers")
 	public String getAllUsers(Model model) {
 		
+		try{
+		
 		model.addAttribute("newUser", new User());
 	
 		UserDAOImpl dao;
-		try {
-			dao = UserDAOImpl.getInstance();
-			HashMap<String, Boolean> users = dao.getAllUsers();
+		
+			HashMap<String, Boolean> users = (HashMap<String, Boolean>) userDAO.getAllUsers();
 			model.addAttribute("users", users);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 		return "allUsers";
 	}
@@ -52,16 +60,17 @@ public class AdminController {
 	@RequestMapping(method=RequestMethod.POST, value="/delete")
 	public String deleteUser(Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		
-		String email = request.getParameter("email");
+		
 		try {
+			String email = request.getParameter("email");
 			UserDAOImpl.getInstance().deleteUser(email);
 			User user = UserDAOImpl.getInstance().getUserByEmail(email);
 			user.setDeleted(true);
 			//model.addAttribute("deleted", user.isDeleted());
 			redirectAttributes.addFlashAttribute("deleted", user.isDeleted());
 			
-		} catch (SQLException | UserException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			
 		}
 		
 		return "redirect:allUsers";

@@ -14,12 +14,15 @@ public class IndexController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String sayHello(Model model, HttpServletRequest request, HttpServletResponse response) {
-
+		
+		try{
 		if ((request.getSession(false) != null) && (request.getAttribute("id") != null)) {
 			long id = (long) request.getSession().getAttribute("id");
 		}
 		
-		
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 		return "index";
 	}

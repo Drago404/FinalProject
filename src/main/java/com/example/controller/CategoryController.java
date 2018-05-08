@@ -29,7 +29,9 @@ public class CategoryController {
 	private IitemDAO itemDAO;
 	
 	@RequestMapping(method=RequestMethod.GET, value="/tv")
-	public String item(Model model) throws SQLException {
+	public String item(Model model){
+		
+		try{
 		
 		model.addAttribute("newItem", new Item());
 		
@@ -38,12 +40,18 @@ public class CategoryController {
 		List<Item> items = itemDAO.getItemsByCategory(category);
 		model.addAttribute("items",items);
 			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		// name of view deto shte gi pokazva
 		return "tv";
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/laptop")
-	public String laptop(Model model) throws SQLException {
+	public String laptop(Model model) {
+		
+		try{
 		
 		model.addAttribute("newItem", new Item());
 		
@@ -52,6 +60,9 @@ public class CategoryController {
 		List<Item> items = itemDAO.getItemsByCategory(category);
 		model.addAttribute("items",items);
 			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 		// name of view deto shte gi pokazva
 		return "tv";
 	}
