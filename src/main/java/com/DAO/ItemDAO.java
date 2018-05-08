@@ -27,7 +27,7 @@ public class ItemDAO implements IitemDAO{
 	private static final String SELECT_ALL_BRANDS = "select id,name from brand";
 
 	private static final String UPDATE_QUANTITY = "UPDATE items SET quantity = quantity - ? Where id = ?";
-	
+	private static final String UPDATE_PICTURE = "update items set pictureUrl=? where id=?";
 
 	private static final String GET_BRAND_ID = "select id from brand where name=?";
 	private static final String GET_CATEGORY_ID = "select id from category where name=?";
@@ -254,12 +254,23 @@ public class ItemDAO implements IitemDAO{
 		}
 		return 0;
 	} 
+	
+	public void updatePicture(long id, String picture) {
+		
+		try {
+			PreparedStatement stmt = conn.prepareStatement(UPDATE_PICTURE);
+			stmt.setString(1, picture);
+			stmt.setLong(2, id);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 
 
 	@Override
 	public int getItemQuantity(int itemId) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

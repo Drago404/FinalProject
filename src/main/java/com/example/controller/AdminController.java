@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,7 +53,7 @@ public class AdminController {
 			HashMap<String, Boolean> users = (HashMap<String, Boolean>) userDAO.getAllUsers();
 			model.addAttribute("users", users);
 		} catch (Exception e) {
-			// TODO: handle exception
+			return "error";
 		}
 		return "allUsers";
 	}
@@ -66,11 +67,10 @@ public class AdminController {
 			UserDAOImpl.getInstance().deleteUser(email);
 			User user = UserDAOImpl.getInstance().getUserByEmail(email);
 			user.setDeleted(true);
-			//model.addAttribute("deleted", user.isDeleted());
 			redirectAttributes.addFlashAttribute("deleted", user.isDeleted());
 			
 		} catch (Exception e) {
-			
+			return "error";
 		}
 		
 		return "redirect:allUsers";
@@ -154,7 +154,7 @@ public class AdminController {
 				String filePath = "img/" + file.getOriginalFilename();
 				if(!file.getOriginalFilename().endsWith("jpg") && !file.getOriginalFilename().endsWith("jpeg") &&
 						!file.getOriginalFilename().endsWith("png")) {
-					return "newItem";
+					return "error";
 				}
 
 				Item item = new Item(name, brandId, price, quantity, categoryId, description, filePath);
@@ -170,10 +170,38 @@ public class AdminController {
 				return "redirect:index";
 			} catch (Exception e) {
 				e.printStackTrace();
-				return "newItem";
+				return "error";
 			}
 		} else
-			return "newItem";
+			return "error";
 	}
-		
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
+	public String editPicture(@RequestParam("file") MultipartFile file, @PathVariable Integer id, HttpServletRequest request,
+			Model model) {
+		String UPLOAD_FOLDER = "C:\\items-images\\";
+		if (!file.isEmpty()) {
+			try {
+
+				byte[] bytes = file.getBytes();
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(new File(UPLOAD_FOLDER + file.getOriginalFilename())));
+				stream.write(bytes);
+				stream.close();
+				String filePath = "img/" + file.getOriginalFilename();
+				if (!file.getOriginalFilename().endsWith("jpg") && !file.getOriginalFilename().endsWith("jpeg")
+						&& !file.getOriginalFilename().endsWith("png")) {
+					return "error";
+				}
+
+				itemDao.updatePicture(id, filePath);
+				return "redirect:item";
+			} catch (Exception e) {
+				return "error";
+			}
+		}
+		return "error";
+	}
+	
+	
 }
