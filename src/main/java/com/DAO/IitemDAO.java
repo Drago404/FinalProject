@@ -18,5 +18,9 @@ public interface IitemDAO {
 
 	public void updateItemQuantity(int id, int quantity) throws SQLException;
 
+	void editProduct(long id, String name, float price, String description, int quantity);
+
+	void updatePicture(long id, String picture);
+
 	
 }

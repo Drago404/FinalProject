@@ -145,7 +145,7 @@ public class UserController {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 		} catch (Exception e) {
-			// TODO: handle exception
+			return "redirect:index";
 		}
 		
 		return "wishlist";

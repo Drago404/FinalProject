@@ -37,17 +37,63 @@
 	<div class="single_product">
 		<div class="container">
 			<div class="row">
+				<div> <c:set var="id" value='${item.id}' />  </div>
+			<c:choose> 
+				<c:when	test="${sessionScope.isAdmin}">
+									
+									
+				<div class="col-lg-5 order-lg-2 order-1">
+					<div class="image_selected"><img src= "${item.pictureUrl}" alt=""></div>
+					<form action="./changePic/${item.id}" method="post" enctype="multipart/form-data" >
+						<div> 
+							<input	type="file" class="file" name="file" value="" required	accept="image/jpg, image/jpeg, image/png">
+						</div>
 
-				<!-- Images 
-				<div class="col-lg-2 order-lg-1 order-2">
-					<ul class="image_list">
-						<li data-image="images/single_4.jpg"><img src="images/single_4.jpg" alt=""></li>
-						<li data-image="images/single_2.jpg"><img src="images/single_2.jpg" alt=""></li>
-						<li data-image="images/single_3.jpg"><img src="images/single_3.jpg" alt=""></li>
-					</ul>
+						<button onclick="editPicture" class="button cart_button">Change picture</button>
+					</form>
 				</div>
--->
-				<!-- Selected Image -->
+
+				<!-- Description -->
+				<div class="col-lg-5 order-3">
+					<div class="product_description">
+					
+					<form method="post" id="form1" >
+					
+						<div class="newsletter_title">Name</div>
+						
+						<textarea name = "item_name" id = "item_name" rows="1" cols="50">${item.name}</textarea>
+						
+					<!--  	<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>   -->
+					
+						<div class="newsletter_title">Description</div>
+						<textarea name = "item_description" rows="10" cols="50">${item.description}</textarea>
+						
+						
+						
+						<div class="order_info d-flex flex-row">
+							
+							
+							<div class="newsletter_title">Price</div>
+									<input type="number" name = "item_price" value ="${item.price}" >
+								
+							</div>
+						<div class="order_info d-flex flex-row">
+							<div class="newsletter_title">Quantity</div>
+									<input type="number"  name = "item_quantity" value = "${item.quantity}"></div>
+						<div class="button_container">
+													<!-- "redirectOne()" -->
+								<button onclick="editItem" class="button cart_button">Change description</button>
+								</div>
+						
+						</form>
+					</div>
+				</div>
+									
+									
+									</c:when>
+									<c:otherwise>
+									
+									<!-- Selected Image -->
 				<div class="col-lg-5 order-lg-2 order-1">
 					<div class="image_selected"><img src= "${item.pictureUrl}" alt=""></div>
 				</div>
@@ -58,6 +104,8 @@
 						<div class="product_category">Laptops</div>
 						<div class="product_name">${item.name}</div>
 					<!--  	<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>   -->
+
+
 						<div class="product_text"><p>${item.description}</p></div>
 						<div class="order_info d-flex flex-row">
 							<form action="#">
@@ -105,12 +153,28 @@
 								<button type="button" onclick="window.location.href='/FinalProject/addWishlist?itemId=' + '${item.id}';" class="button cart_button">Add to wishlist</button>
 								<!-- 	<div class="product_fav" onclick="window.location.href='/FinalProject/addWishlist?itemId= + '${item.id}';"><i class="fas fa-heart"></i></div>
 								 -->
+								
+								
 								</div>
+								
 								
 							</form>
 						</div>
 					</div>
 				</div>
+									</c:otherwise>
+								</c:choose>
+
+				<!-- Images 
+				<div class="col-lg-2 order-lg-1 order-2">
+					<ul class="image_list">
+						<li data-image="images/single_4.jpg"><img src="images/single_4.jpg" alt=""></li>
+						<li data-image="images/single_2.jpg"><img src="images/single_2.jpg" alt=""></li>
+						<li data-image="images/single_3.jpg"><img src="images/single_3.jpg" alt=""></li>
+					</ul>
+				</div>
+-->
+				
 
 			</div>
 		</div>
@@ -412,9 +476,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     	var form = document.getElementById('searchForm');
     	form.action = action_src ;	
 	}
-
 	  function quantityInput(){
 		  return document.getElementById('quantity_input').value;
+	  }
+	  function nameChange(){
+		  return document.getElementById('item_name').value;
+	  }
+	  function descriptionChange(){
+		  return document.getElementById('item_description').value;
+	  }
+	  function quantityChange(){
+		  return document.getElementById('item_quantity').value;
+	  }
+	  function quantityChange(){
+		  return document.getElementById('item_quantity').value;
 	  }
 	</script>
 </script>
