@@ -14,13 +14,15 @@ public interface IitemDAO {
 
 	public List<Item> getItemsByName(String text);
 
-	public int getItemQuantity(int itemId);
-
 	public void updateItemQuantity(int id, int quantity) throws SQLException;
 
 	void editProduct(long id, String name, float price, String description, int quantity);
 
 	void updatePicture(long id, String picture);
+
+	long getIDbyBrandName(String name);
+
+	long getIDbyCategoryName(String name);
 
 	
 }

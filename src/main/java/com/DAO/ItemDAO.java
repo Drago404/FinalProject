@@ -222,7 +222,7 @@ public class ItemDAO implements IitemDAO{
 		return null;
 	}
 	
-	
+	@Override
 	public long getIDbyBrandName(String name) {
 		PreparedStatement stmt;
 		try {
@@ -239,6 +239,7 @@ public class ItemDAO implements IitemDAO{
 		return 0;
 	}
 	
+	@Override
 	public long getIDbyCategoryName(String name) {
 		PreparedStatement stmt;
 		try {
@@ -289,10 +290,6 @@ public class ItemDAO implements IitemDAO{
 	}
 	
 
-	@Override
-	public int getItemQuantity(int itemId) {
-		return 0;
-	}
 
 
 

@@ -114,6 +114,52 @@ public class Item {
 	public void setPictureUrl(String pictureUrl) {
 		this.pictureUrl = pictureUrl;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (brandId ^ (brandId >>> 32));
+		result = prime * result + (int) (categoryId ^ (categoryId >>> 32));
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((pictureUrl == null) ? 0 : pictureUrl.hashCode());
+		result = prime * result + Float.floatToIntBits(price);
+		result = prime * result + quantity;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Item other = (Item) obj;
+		if (brandId != other.brandId)
+			return false;
+		if (categoryId != other.categoryId)
+			return false;
+		if (id != other.id)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (pictureUrl == null) {
+			if (other.pictureUrl != null)
+				return false;
+		} else if (!pictureUrl.equals(other.pictureUrl))
+			return false;
+		if (Float.floatToIntBits(price) != Float.floatToIntBits(other.price))
+			return false;
+		if (quantity != other.quantity)
+			return false;
+		return true;
+	}
 	
 	
 

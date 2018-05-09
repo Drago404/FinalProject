@@ -32,8 +32,8 @@ public class UserTests {
 		User user = new User("toni@abv.bg", "1234");
 		Boolean  loginCheck = dao.login(user.getEmail(), user.getPassword());
 		
-		
-		assertThat(loginCheck, is(false));
+		assertFalse(loginCheck);
+//		assertThat(loginCheck, is(false));
 	}
 
 }
