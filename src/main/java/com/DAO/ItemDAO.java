@@ -255,16 +255,7 @@ public class ItemDAO implements IitemDAO{
 		return 0;
 	} 
 	
-	public void updatePicture1(long id, String picture) {
-		try {
-			PreparedStatement stmt = conn.prepareStatement(UPDATE_PICTURE);
-			stmt.setString(1, picture);
-			stmt.setLong(2, id);
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+
 
 	@Override
 	public void editProduct(long id, String name, float price, String description, int quantity){

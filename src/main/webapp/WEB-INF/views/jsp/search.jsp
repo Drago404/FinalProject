@@ -62,17 +62,6 @@
 							</div>
 						</div>
 						<div class="sidebar_section">
-							<div class="sidebar_subtitle color_subtitle">Color</div>
-							<ul class="colors_list">
-								<li class="color"><a href="#" style="background: #b19c83;"></a></li>
-								<li class="color"><a href="#" style="background: #000000;"></a></li>
-								<li class="color"><a href="#" style="background: #999999;"></a></li>
-								<li class="color"><a href="#" style="background: #0e8ce4;"></a></li>
-								<li class="color"><a href="#" style="background: #df3b3b;"></a></li>
-								<li class="color"><a href="#" style="background: #ffffff; border: solid 1px #e1e1e1;"></a></li>
-							</ul>
-						</div>
-						<div class="sidebar_section">
 							<div class="sidebar_subtitle brands_subtitle">Brands</div>
 							<ul class="brands_list">
 								<li class="brand"><a href="#">Apple</a></li>
@@ -100,11 +89,12 @@
 								<span>Sort by:</span>
 								<ul>
 									<li>
-										<span class="sorting_text">highest rated<i class="fas fa-chevron-down"></span></i>
+										<span class="sorting_text">highest rated<i class="fas fa-chevron-down"></i></span>
 										<ul>
 											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "original-order" }'>highest rated</li>
 											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>name</li>
-											<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "price" }'>price</li>
+											<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "price" }'>lowest price</li>
+											<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "descending" }'>highest price</li>
 										</ul>
 									</li>
 								</ul>
@@ -138,7 +128,7 @@
 							
 						</div>
 
-						<!-- Shop Page Navigation -->
+						<!-- Shop Page Navigation 
 
 						<div class="shop_page_nav d-flex flex-row">
 							<div class="page_prev d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-left"></i></div>
@@ -151,7 +141,7 @@
 							</ul>
 							<div class="page_next d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-right"></i></div>
 						</div>
-
+						-->
 					</div>
 
 				</div>
@@ -452,13 +442,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script src="plugins/parallax-js-master/parallax.min.js"></script>
 <script src="js/shop_custom.js"></script>
-<script type="text/javascript">
-	function searchFunction(){
-    	var action_src = "http://localhost:8080/FinalProject/search/" + document.getElementsByName("txtSearch")[0].value;
-    	var form = document.getElementById('searchForm');
-    	form.action = action_src ;
-	}
-</script>
+<script src="js/search_product.js"></script>
 
 </body>
 </html>

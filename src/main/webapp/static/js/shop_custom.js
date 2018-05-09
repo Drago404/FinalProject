@@ -321,7 +321,7 @@ $(document).ready(function()
 	{
 		var sortingButtons = $('.shop_sorting_button');
 
-		$('.product_grid').isotope({
+		 var $container = $('.product_grid').isotope({
 			itemSelector: '.product_item',
             getSortData: {
             	price: function(itemElement)
@@ -329,8 +329,18 @@ $(document).ready(function()
             		var priceEle = $(itemElement).find('.product_price').text().replace( 'лв.', '' );
             		return parseFloat(priceEle);
             	},
+            	descending: function(itemElement)
+            	{
+            		var priceEle = $(itemElement).find('.product_price').text().replace( 'лв.', '' );
+            		return parseFloat(priceEle);
+            	},
             	name: '.product_name div a'
             },
+            sortAscending: {
+				price: true,
+				descending: false,
+				name: true
+		    },
             animationOptions: {
                 duration: 750,
                 easing: 'linear',
@@ -338,7 +348,7 @@ $(document).ready(function()
             }
         });
 
-        // Sort based on the value from the 	 dropdown
+        // Sort based on the value from the dropdown
         sortingButtons.each(function()
         {
         	$(this).on('click', function()
