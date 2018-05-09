@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

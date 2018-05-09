@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
