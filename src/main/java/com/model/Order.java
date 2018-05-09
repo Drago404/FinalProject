@@ -28,14 +28,12 @@ public class Order {
 
 	public Order(String ordererFirstName, String ordererLastName, String ordererCity, String ordererPhone,
 			String ordererPostCode, String ordererStreet) throws OrderException {
-		this.id = id;
 		setOrdererFirstName(ordererFirstName);
 		setOrdererLastName(ordererLastName);
 		setOrdererCity(ordererCity);
 		setOrdererPhone(ordererPhone);
 		setOrdererPostCode(ordererPostCode);
 		setOrdererStreet(ordererStreet);
-		this.userId = userId;
 		this.items = new HashMap<Integer, Integer>();
 	}
 	
@@ -57,7 +55,7 @@ public class Order {
 		setOrdererAppartment(ordererAppartment);
 		setDescription(description);
 		setUserId(userId);
-		setItems(items);
+		this.items = items;
 	}
 	
 	public Order() {
@@ -212,9 +210,6 @@ public class Order {
 		this.id = id;
 	}
 
-	public void setItems(Map<Integer,Integer> items) {
-		this.items = items;
-	}
 	
 	
 	

@@ -89,11 +89,11 @@
                                     </div>
                                      <div class="col-md-6 mb-3">
                                         <label for="first_name">Post Code <span>*</span></label>
-                                        <input type="text" class="form-control" name="postCode" value="" required>
+                                        <input type="number" class="form-control" name="postCode" value="" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="last_name">Street Number </label>
-                                        <input type="text" class="form-control" name="streetNumber" value="" >
+                                        <input type="number" class="form-control" name="streetNumber" value="" >
                                     </div>
                                      <div class="col-md-6 mb-3">
                                         <label for="last_name">Block </label>
@@ -105,7 +105,7 @@
                                     </div>
                                      <div class="col-md-6 mb-3">
                                         <label for="last_name">Floor </label>
-                                        <input type="text" class="form-control" name="floor" value="" >
+                                        <input type="number" class="form-control" name="floor" value="" >
                                     </div>
                                      <div class="col-md-6 mb-3">
                                         <label for="last_name">Apartment </label>
