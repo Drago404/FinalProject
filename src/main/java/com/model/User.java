@@ -76,6 +76,12 @@ public class User {
 		setDeleted(isDeleted);
 		this.orders = new ArrayList<Order>();
 	}
+
+	public User(String email, String password) throws UserException {
+		setEmail(email);
+		setPassword(password);
+	}
+	
 	
 	public User() {
 		

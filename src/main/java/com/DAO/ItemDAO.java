@@ -255,7 +255,7 @@ public class ItemDAO implements IitemDAO{
 		return 0;
 	} 
 	
-	
+
 
 	@Override
 	public void editProduct(long id, String name, float price, String description, int quantity){

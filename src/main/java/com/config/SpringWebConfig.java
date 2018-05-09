@@ -1,4 +1,4 @@
-package com.example;
+package com.config;
 
 import java.util.Locale;
 import java.util.Properties;
