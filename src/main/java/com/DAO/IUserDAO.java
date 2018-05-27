@@ -7,9 +7,9 @@ import java.util.Map;
 import com.exceptions.UserException;
 import com.model.User;
 
-public interface UserDAO {
+public interface IUserDAO {
 	
-	 void register(User user) throws UserException, SQLException;
+	void register(User user) throws UserException, SQLException;
 
 	boolean checkIfUserExists(User user) throws UserException, SQLException;
 	
@@ -24,5 +24,13 @@ public interface UserDAO {
 	void removeFromWishlist(int userId, int itemId) throws SQLException;
 
 	List<Integer> getWishlist(int userId) throws SQLException;
+
+	void deleteUser(String email);
+
+	User getUserByEmail(String email) throws UserException;
+
+	User getUser(String email, String password) throws UserException;
+
+	boolean checkIsDeleted(String email);
 
 }

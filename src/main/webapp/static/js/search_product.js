@@ -3,3 +3,7 @@ function searchFunction(){
     	var form = document.getElementById('searchForm');
     	form.action = action_src ;	
 	}
+
+function quantityInput(){
+	  return document.getElementById('quantity_input').value;
+}

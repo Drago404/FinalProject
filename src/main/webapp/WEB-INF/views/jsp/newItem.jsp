@@ -83,6 +83,7 @@
 												<option value="Philips">Philips</option>
 												<option value="Neo">Neo</option>
 												<option value="Samsung">Samsung</option>
+												<option value="Apple">Apple</option>
 										</select>
 
 
@@ -92,11 +93,11 @@
 
 									<div class="col-12 mb-3">
 										<label for="phone_number">Price <span>*</span></label> <input
-											type="text" class="form-control" name="price" value="">
+											type="number" min="0" step="0.01" oninput="validity.valid||(value='');" class="form-control" name="price" value="">
 									</div>
 									<div class="col-12 mb-3">
 										<label for="phone_number">Quantity <span>*</span></label> <input
-											type="text" class="form-control" name="quantity" value="">
+											type="number" min="1" oninput="validity.valid||(value='');" class="form-control" name="quantity" value="">
 									</div>
 
 

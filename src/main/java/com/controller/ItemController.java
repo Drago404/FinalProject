@@ -33,10 +33,14 @@ public class ItemController  {
 		try{
 		
 		Item item = itemDAO.getItem(id);
+		if(item.getName()== null){
+			return "redirect:index";
+		}
 		
 		model.addAttribute(item);
 		
 		} catch (Exception e) {
+			return "error";
 		}
 		
 		return "item";
@@ -55,6 +59,7 @@ public class ItemController  {
 		model.addAttribute("items",items);
 		
 		} catch (Exception e) {
+			return "error";
 		}
 		
 		return "search";

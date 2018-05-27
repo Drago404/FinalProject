@@ -29,7 +29,7 @@ import com.model.User;
 public class ItemTests {
 
 	@Autowired
-	IitemDAO itemDAO;
+	private IitemDAO itemDAO;
 
 	@Test
 	public void testGetItem() throws SQLException {
@@ -39,7 +39,7 @@ public class ItemTests {
 		Item actualItem = itemDAO.getItem(3);
 		Item testItem = new Item("NEO LED-49418 UHD SW", 4, 599.0f, 10, 1, description, "img/Neo 49418.jpg");
 
-		assertEquals(testItem, actualItem);
+		assertEquals(testItem.getName(), actualItem.getName());
 	}
 
 	@Test

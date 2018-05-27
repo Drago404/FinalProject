@@ -24,5 +24,7 @@ public interface IitemDAO {
 
 	long getIDbyCategoryName(String name);
 
+	List<Item> getItemsByCategoryAndBrand(Category category, int brandId) throws SQLException;
+
 	
 }

@@ -21,7 +21,7 @@ public class IndexController {
 		}
 		
 		} catch (Exception e) {
-			// TODO: handle exception
+			return "error";
 		}
 		
 		return "index";
