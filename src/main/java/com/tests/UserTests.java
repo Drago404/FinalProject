@@ -46,15 +46,15 @@ public class UserTests {
 		assertFalse(loginCheck);
 	}
 	
-//	@Test
-//	public void testRegister() throws SQLException, UserException {
-//		LocalDate localDate = LocalDate.now();
-//		User user = new User("Anton", "Petrov", "anton@abv.bg", "123", localDate);
-//
-//		dao.register(user);
-//		Boolean loginCheck = dao.login(user.getEmail(), user.getPassword());
-//		assertTrue(loginCheck);
-//	}
+	@Test
+	public void testRegister() throws SQLException, UserException {
+		LocalDate localDate = LocalDate.now();
+		User user = new User("Anton", "Petrov", "anton@abv.bg", "123", localDate);
+
+		dao.register(user);
+		Boolean loginCheck = dao.login(user.getEmail(), user.getPassword());
+		assertTrue(loginCheck);
+	}
 	
 	
 	@Test(expected = UserException.class)
