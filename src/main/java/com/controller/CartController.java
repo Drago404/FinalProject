@@ -23,11 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.DAO.ICategoryDAO;
 import com.DAO.IOrderDAO;
-import com.DAO.IOrderEmail;
 import com.DAO.IitemDAO;
 import com.DAO.ItemDAO;
 import com.DAO.OrderEmail;
-import com.DAO.UserDAO;
+import com.DAO.IUserDAO;
 import com.exceptions.OrderException;
 import com.fasterxml.jackson.annotation.JsonFormat.Value;
 import com.model.Item;
@@ -47,18 +46,19 @@ public class CartController {
 	private OrderEmail orderEmail;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/addItem")
-	public String addItem(Model model, @RequestParam(value = "itemId", required = false) String id,
-			@RequestParam(value = "itemQuantity", required = false) String quantity, HttpServletRequest request,
+	public String addItem(Model model, @RequestParam(value = "itemId", required = true) String id,
+			@RequestParam(value = "itemQuantity", required = true) String quantity, HttpServletRequest request,
 			HttpServletResponse response) {
 		try {
 			int itemId = Integer.parseInt(id.toString());
 			int wantedQuantity = Integer.parseInt(quantity.toString());
 			Item item = itemDAO.getItem(itemId);
 
-			if (item.getQuantity() > wantedQuantity) {
-				
+			if (wantedQuantity > 0 && item.getQuantity() > wantedQuantity) {
+
 				HttpSession session = request.getSession(false);
-				//create cookie with name (userId + itemId) and value( itemId and quantity);
+				// create cookie with name (userId + itemId) and value( itemId
+				// and quantity);
 				Cookie cookie = new Cookie((session.getAttribute("id")) + "&" + id,
 						id.toString() + "&" + quantity.toString());
 				cookie.setMaxAge(6000);
@@ -68,13 +68,13 @@ public class CartController {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			return "error";
 		}
 		return "redirect:./cart";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/removeItem")
-	public String removeItem(Model model, @RequestParam(value = "itemId", required = false) String id,
+	public String removeItem(Model model, @RequestParam(value = "itemId", required = true) String id,
 			HttpServletRequest request, HttpServletResponse response) {
 
 		try {
@@ -85,7 +85,7 @@ public class CartController {
 
 			response.addCookie(cookie);
 		} catch (Exception e) {
-			// TODO: handle exception
+			return "error";
 		}
 		return "redirect:./cart";
 	}
@@ -141,8 +141,7 @@ public class CartController {
 				return "cart";
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
+			return "error";
 		}
 
 		return "cart";
@@ -170,9 +169,8 @@ public class CartController {
 				return "redirect:index";
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			return "error";
 		}
-		return "checkout";
 
 	}
 
@@ -213,20 +211,21 @@ public class CartController {
 
 					int id = Integer.parseInt(itemId);
 					int quantity = Integer.parseInt(itemQuantity);
+					if(quantity > 0){
 					items.put(id, quantity);
-
+					}
 					// Delete Cookie
 					cookie.setMaxAge(0);
 					response.addCookie(cookie);
 
 					/// Update item quantity
-					
-					if(itemDAO.getItem(id).getQuantity() > quantity){
+
+					if (itemDAO.getItem(id).getQuantity() > quantity) {
 						itemDAO.updateItemQuantity(id, quantity);
-					}else{
-						return "redirect:error";
+					} else {
+						return "error";
 					}
-					
+
 				}
 
 				Order order = new Order(firstName, lastName, city, phoneNumber, postCode, street, streetNumber, block,
@@ -238,9 +237,7 @@ public class CartController {
 
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return "redirect:error";
+			return "error";
 		}
 
 		return "redirect:successfulCheckout";

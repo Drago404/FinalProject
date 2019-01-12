@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.DAO.CategoryDAO;
-import com.DAO.UserDAO;
+import com.DAO.IUserDAO;
 import com.config.SpringWebConfig;
 import com.model.Category;
 
@@ -24,10 +24,10 @@ public class CategoryTest {
 	
 	@Test
 	public void testCategory() {
-		Category cat = new Category("TV");
-		Category category = dao.getCategory(1);
+		Category actualCategory = dao.getCategory(1);
+		Category testCategory = new Category("TV");
 		
-		assertEquals(cat.getName(), category.getName());
+		assertEquals(testCategory.getName(), actualCategory.getName());
 		
 	}
 

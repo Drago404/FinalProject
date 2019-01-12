@@ -9,12 +9,15 @@ public class Category {
 	
 	
 	public Category(String name) {
+		setName(name);
+	}	
+	
+	public Category(int id,String name) {
 		this.id = id;
 		setName(name);
 	}	
 	
 	public Category() {
-
 	}	
 
 

@@ -114,14 +114,5 @@ public class Item {
 	public void setPictureUrl(String pictureUrl) {
 		this.pictureUrl = pictureUrl;
 	}
-	
-	
-
-//	public void setPictureUrl(String pictureUrl) {
-//		if(pictureUrl.matches("http(s?)://([\\w-]+\\.)+[\\w-]+(/[\\w- ./]*)+\\.(?:[gG][iI][fF]|[jJ][pP][gG]|[jJ][pP][eE][gG]|[pP][nN][gG]|[bB][mM][pP])")) {
-//		this.pictureUrl = pictureUrl;
-//	}
-//		new ItemException("invalid photo URL");
-//	}
 
 }

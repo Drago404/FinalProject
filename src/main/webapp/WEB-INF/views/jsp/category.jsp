@@ -31,7 +31,7 @@
 		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/shop_background.jpg"></div>
 		<div class="home_overlay"></div>
 		<div class="home_content d-flex flex-column align-items-center justify-content-center">
-			<h2 class="home_title">Телевизори</h2>
+			<h2 class="home_title">${category}</h2>
 		</div>
 	</div>
 
@@ -44,18 +44,16 @@
 
 					<!-- Shop Sidebar -->
 					<div class="shop_sidebar">
-						<div class="sidebar_section">
-							<div class="sidebar_title">Categories</div>
-							<ul class="sidebar_categories">
-								<li><a href="#">Computers & Laptops</a></li>
-								<li><a href="#">Cameras & Photos</a></li>
-								<li><a href="#">Hardware</a></li>
-								<li><a href="#">Smartphones & Tablets</a></li>
-								<li><a href="#">TV & Audio</a></li>
-								<li><a href="#">Gadgets</a></li>
-								<li><a href="#">Car Electronics</a></li>
-								<li><a href="#">Video Games & Consoles</a></li>
-								<li><a href="#">Accessories</a></li>
+					<div class="sidebar_section">
+							<div class="sidebar_title">Brands</div>
+							<ul class="brands_list">
+								<li class="brand"><a href="http://localhost:8080/FinalProject/tvbrand?brandId=2">LG</a></li>
+								<li class="brand"><a href="http://localhost:8080/FinalProject/tvbrand?brandId=4">NEO</a></li>
+								<li class="brand"><a href="http://localhost:8080/FinalProject/tvbrand?brandId=6">Philips</a></li>
+								<li class="brand"><a href="http://localhost:8080/FinalProject/tvbrand?brandId=3">Samsung</a></li>
+								<li class="brand"><a href="http://localhost:8080/FinalProject/tvbrand?brandId=1">Sony</a></li>
+								<li class="brand"><a href="http://localhost:8080/FinalProject/laptopbrand?brandId=8">Acer</a></li>
+								<li class="brand"><a href="http://localhost:8080/FinalProject/laptopbrand?brandId=9">HP</a></li>
 							</ul>
 						</div>
 						<div class="sidebar_section filter_by_section">
@@ -81,16 +79,17 @@
 						</div>
 						-->
 						<div class="sidebar_section">
-							<div class="sidebar_subtitle brands_subtitle">Brands</div>
-							<ul class="brands_list">
-								<li class="brand"><a href="#">Apple</a></li>
-								<li class="brand"><a href="#">Beoplay</a></li>
-								<li class="brand"><a href="#">Google</a></li>
-								<li class="brand"><a href="#">Meizu</a></li>
-								<li class="brand"><a href="#">OnePlus</a></li>
-								<li class="brand"><a href="#">Samsung</a></li>
-								<li class="brand"><a href="#">Sony</a></li>
-								<li class="brand"><a href="#">Xiaomi</a></li>
+							<div class="sidebar_subtitle brands_subtitle">Categories</div>
+							<ul class="sidebar_categories">
+								<li><a href="#">Computers & Laptops</a></li>
+								<li><a href="#">Cameras & Photos</a></li>
+								<li><a href="#">Hardware</a></li>
+								<li><a href="#">Smartphones & Tablets</a></li>
+								<li><a href="#">TV & Audio</a></li>
+								<li><a href="#">Gadgets</a></li>
+								<li><a href="#">Car Electronics</a></li>
+								<li><a href="#">Video Games & Consoles</a></li>
+								<li><a href="#">Accessories</a></li>
 							</ul>
 						</div>
 					</div>

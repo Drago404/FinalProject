@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.DAO.CategoryDAO;
 import com.DAO.ICategoryDAO;
@@ -21,52 +22,108 @@ import com.model.Item;
 @Component
 @Controller
 public class CategoryController {
-	
+
 	@Autowired
 	private ICategoryDAO categoryDAO;
-	
+
 	@Autowired
 	private IitemDAO itemDAO;
-	
-	@RequestMapping(method=RequestMethod.GET, value="/tv")
-	public String item(Model model){
-		
-		try{
-		
-		model.addAttribute("newItem", new Item());
-		
-		Category category = categoryDAO.getCategory(1);
-		
-		List<Item> items = itemDAO.getItemsByCategory(category);
-		model.addAttribute("items",items);
-			
-		}catch (Exception e) {
-			// TODO: handle exception
+
+	@RequestMapping(method = RequestMethod.GET, value = "/tv")
+	public String tv(Model model) {
+
+		try {
+
+			model.addAttribute("category", "TVs");
+
+			Category category = categoryDAO.getCategory(1);
+
+			List<Item> items = itemDAO.getItemsByCategory(category);
+			model.addAttribute("items", items);
+
+		} catch (Exception e) {
+			return "error";
 		}
-		
-		// name of view deto shte gi pokazva
-		return "tv";
+
+		return "category";
 	}
-	
-	@RequestMapping(method=RequestMethod.GET, value="/laptop")
+
+	@RequestMapping(method = RequestMethod.GET, value = "/laptop")
 	public String laptop(Model model) {
-		
-		try{
-		
-		model.addAttribute("newItem", new Item());
-		
-		Category category = categoryDAO.getCategory(2);
-		
-		List<Item> items = itemDAO.getItemsByCategory(category);
-		model.addAttribute("items",items);
-			
-		}catch (Exception e) {
-			// TODO: handle exception
+
+		try {
+
+			model.addAttribute("category", "Laptops");
+			Category category = categoryDAO.getCategory(2);
+
+			List<Item> items = itemDAO.getItemsByCategory(category);
+			model.addAttribute("items", items);
+
+		} catch (Exception e) {
+			return "error";
 		}
-		// name of view deto shte gi pokazva
-		return "tv";
+
+		return "category";
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/phone")
+	public String phone(Model model) {
+
+		try {
+
+			model.addAttribute("category", "Smartphones");
+			Category category = categoryDAO.getCategory(3);
+
+			List<Item> items = itemDAO.getItemsByCategory(category);
+			model.addAttribute("items", items);
+
+		} catch (Exception e) {
+			return "error";
+		}
+
+		return "category";
+	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/tvbrand")
+	public String tvAndBrand(Model model,@RequestParam(value = "brandId", required = true) String id) {
+		
+		int brandId = Integer.parseInt(id.toString());
+		
+		try {
+
+			model.addAttribute("category", "TVs");
+
+			Category category = categoryDAO.getCategory(1);
+
+			List<Item> items = itemDAO.getItemsByCategoryAndBrand(category, brandId);
+			model.addAttribute("items", items);
+
+		} catch (Exception e) {
+			return "error";
+		}
+
+		return "category";
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/laptopbrand")
+	public String laptopAndBrand(Model model,@RequestParam(value = "brandId", required = true) String id) {
+		
+		int brandId = Integer.parseInt(id.toString());
+		
+		try {
+
+			model.addAttribute("category", "Laptops");
+
+			Category category = categoryDAO.getCategory(2);
+
+			List<Item> items = itemDAO.getItemsByCategoryAndBrand(category, brandId);
+			model.addAttribute("items", items);
+
+		} catch (Exception e) {
+			return "error";
+		}
+
+		return "category";
+	}
 	
 }

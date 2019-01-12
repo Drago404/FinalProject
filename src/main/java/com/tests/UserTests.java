@@ -13,7 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.DAO.UserDAO;
+import com.DAO.IUserDAO;
 import com.DAO.UserDAOImpl;
 import com.config.SpringWebConfig;
 import com.exceptions.UserException;
@@ -26,13 +26,12 @@ public class UserTests {
 
 	
 	@Autowired
-	UserDAO dao;
+	IUserDAO dao;
 	
 	@Test
 	public void testBadPassword() throws SQLException, UserException {
 		User user = new User("toni@abv.bg", "1234");
 		Boolean  loginCheck = dao.login(user.getEmail(), user.getPassword());
-		
 		
 		assertFalse(loginCheck);
 	}
@@ -41,7 +40,6 @@ public class UserTests {
 	public void testBadEmail() throws SQLException, UserException {
 		User user = new User("toniiiii@abv.bg", "123");
 		Boolean  loginCheck = dao.login(user.getEmail(), user.getPassword());
-		
 		
 		assertFalse(loginCheck);
 	}
@@ -55,7 +53,6 @@ public class UserTests {
 		Boolean loginCheck = dao.login(user.getEmail(), user.getPassword());
 		assertTrue(loginCheck);
 	}
-	
 	
 	@Test(expected = UserException.class)
 	public void testUser() throws UserException, SQLException {

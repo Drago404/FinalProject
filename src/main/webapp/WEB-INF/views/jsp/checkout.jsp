@@ -89,11 +89,11 @@
                                     </div>
                                      <div class="col-md-6 mb-3">
                                         <label for="first_name">Post Code <span>*</span></label>
-                                        <input type="text" class="form-control" name="postCode" value="" required>
+                                        <input type="number" min="0" oninput="validity.valid||(value='');" class="form-control" name="postCode" value="" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="last_name">Street Number </label>
-                                        <input type="text" class="form-control" name="streetNumber" value="" >
+                                        <input type="number" min="0" class="form-control" name="streetNumber" value="" oninput="validity.valid||(value='');">
                                     </div>
                                      <div class="col-md-6 mb-3">
                                         <label for="last_name">Block </label>
@@ -105,7 +105,7 @@
                                     </div>
                                      <div class="col-md-6 mb-3">
                                         <label for="last_name">Floor </label>
-                                        <input type="text" class="form-control" name="floor" value="" >
+                                        <input type="number" min="0" class="form-control" name="floor" value="" oninput="validity.valid||(value='');" >
                                     </div>
                                      <div class="col-md-6 mb-3">
                                         <label for="last_name">Apartment </label>
@@ -150,22 +150,11 @@
                                     </div>
                                     <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quis in veritatis officia inventore, tempore provident dignissimos.</p>
+                                            <p></p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-header" role="tab" id="headingThree">
-                                        <h6 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class="fa fa-circle-o mr-3"></i>credit card</a>
-                                        </h6>
-                                    </div>
-                                    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse quo sint repudiandae suscipit ab soluta delectus voluptate, vero vitae</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
 <!--
                             <a href="#" class="btn karl-checkout-btn">Place Order</a> -->
@@ -187,11 +176,7 @@
                             <div class="footer-logo">
                                 <img src="img/core-img/logo.png" alt="">
                             </div>
-                            <div class="copywrite_text d-flex align-items-center">
-                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                            </div>
+                            
                         </div>
                     </div>
                     <!-- Single Footer Area Start -->
@@ -275,11 +260,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="plugins/easing/easing.js"></script>
 <script src="js/product_custom.js"></script>
 <script src="js/search_product.js"></script>
-<script type="text/javascript">
-	  function quantityInput(){
-		  return document.getElementById('quantity_input').value;
-	  }
-	</script>
+
 
 </body>
 </html>

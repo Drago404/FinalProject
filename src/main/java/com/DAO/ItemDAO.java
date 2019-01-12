@@ -28,9 +28,9 @@ public class ItemDAO implements IitemDAO{
 	private static final String EDIT_PRODUCT = "update items set name=?, price=?, description=?, quantity=? where id=?";
 	private static final String UPDATE_QUANTITY = "UPDATE items SET quantity = quantity - ? Where id = ?";
 	private static final String UPDATE_PICTURE = "update items set pictureUrl=? where id=?";
-
 	private static final String GET_BRAND_ID = "select id from brand where name=?";
 	private static final String GET_CATEGORY_ID = "select id from category where name=?";
+	private static final String SHOW_ALL_ITEMS_BY_CATEGORY_AND_BRAND = "SELECT * FROM items WHERE category_id = ? AND brand_id = ?";
 
 	private Connection conn;
 	public static Map<Long, Item> allItems;
@@ -222,7 +222,7 @@ public class ItemDAO implements IitemDAO{
 		return null;
 	}
 	
-	
+	@Override
 	public long getIDbyBrandName(String name) {
 		PreparedStatement stmt;
 		try {
@@ -239,6 +239,7 @@ public class ItemDAO implements IitemDAO{
 		return 0;
 	}
 	
+	@Override
 	public long getIDbyCategoryName(String name) {
 		PreparedStatement stmt;
 		try {
@@ -287,17 +288,34 @@ public class ItemDAO implements IitemDAO{
 			e.printStackTrace();
 		}
 	}
-	
-
 	@Override
-	public int getItemQuantity(int itemId) {
-		return 0;
+	public List<Item> getItemsByCategoryAndBrand(Category category,int brandId) throws SQLException {
+		int categoryId = category.getId();
+		PreparedStatement stmt = conn.prepareStatement(SHOW_ALL_ITEMS_BY_CATEGORY_AND_BRAND);
+		stmt.setInt(1, categoryId);
+		stmt.setInt(2, brandId);
+		ResultSet rs = stmt.executeQuery();
+
+		List<Item> itemsList = new ArrayList<Item>();
+
+		while (rs.next()) {
+
+			Item item = new Item();
+			item.setId(rs.getInt("id"));
+			item.setName(rs.getString("name"));
+			item.setPrice(rs.getFloat("price"));
+			item.setDescription(rs.getString("description"));
+			item.setQuantity(rs.getInt("quantity"));
+			item.setCategoryId(rs.getLong("category_id"));
+			item.setBrandId(rs.getLong("brand_id"));
+			item.setPictureUrl(rs.getString("pictureUrl"));
+			itemsList.add(item);
+
+		}
+		stmt.close();
+
+		return itemsList;
+
 	}
-
-
-
-
-
-	
 
 }

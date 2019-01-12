@@ -32,7 +32,7 @@ public class OrderEmail {
 		SimpleMailMessage mail = new SimpleMailMessage();
 		mail.setTo(email);
 		mail.setFrom("technomarketshoporders@gmail.com");
-		mail.setSubject("Order № ");
+		mail.setSubject("Order from Technomarket");
 
 		String orderFloor;
 		String orderStreetNumber;

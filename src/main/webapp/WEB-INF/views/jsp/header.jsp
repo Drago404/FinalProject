@@ -24,8 +24,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col d-flex flex-row">
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>+38 068 005 3570</div>
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>+359888068005</div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="">technomarket@gmail.com</a></div>
 						<div class="top_bar_content ml-auto">
 							<div class="top_bar_menu">
 						
@@ -81,15 +81,9 @@
 										<input type="search" name ="txtSearch" required="required" class="header_search_input" placeholder="Search for products...">
 										<div class="custom_dropdown">
 											<div class="custom_dropdown_list">
-												<span id ="searchCategory" class="custom_dropdown_placeholder clc">All Categories</span>
-												<i class="fas fa-chevron-down"></i>
+												<span id ="searchCategory" class="custom_dropdown_placeholder clc"></span>
 												<ul class="custom_list clc">
-													<li><a class="clc" href="#">All Categories</a></li>
-													<li><a class="clc" href="#">Computers</a></li>
-													<li><a class="clc" href="#">Laptops</a></li>
-													<li><a class="clc" href="#">Cameras</a></li>
-													<li><a class="clc" href="#">Hardware</a></li>
-													<li><a class="clc" href="#">Smartphones</a></li>
+													
 												</ul>
 											</div>
 										</div>
@@ -184,10 +178,10 @@
 												<a href="#">TV<i class="fas fa-chevron-down"></i></a>
 												<ul>
 													<li><a href="http://localhost:8080/FinalProject/tv">All TVs<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">LG<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">NEO<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Philips<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Samsung<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="http://localhost:8080/FinalProject/tvbrand?brandId=2">LG<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="http://localhost:8080/FinalProject/tvbrand?brandId=4">NEO<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="http://localhost:8080/FinalProject/tvbrand?brandId=6">Philips<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="http://localhost:8080/FinalProject/tvbrand?brandId=3">Samsung<i class="fas fa-chevron-down"></i></a></li>
 												</ul>
 											</li>
 											<li><a href="#">TV Accessories<i class="fas fa-chevron-down"></i></a></li>
@@ -202,8 +196,8 @@
 												<a href="#">Laptops<i class="fas fa-chevron-down"></i></a>
 												<ul>
 													<li><a href="http://localhost:8080/FinalProject/laptop"">All Laptops<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Acer<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Apple<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="http://localhost:8080/FinalProject/laptopbrand?brandId=8">Acer<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="http://localhost:8080/FinalProject/laptopbrand?brandId=9">HP<i class="fas fa-chevron-down"></i></a></li>
 												</ul>
 											</li>
 											<li><a href="#">Computers<i class="fas fa-chevron-down"></i></a></li>
@@ -216,49 +210,27 @@
 										<a href="#">Phones and tablets<i class="fas fa-chevron-down"></i></a>
 										<ul>
 											<li>
-												<a href="#">Mobile phones<i class="fas fa-chevron-down"></i></a>
+												<a href="">Smartphones<i class="fas fa-chevron-down"></i></a>
 												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="http://localhost:8080/FinalProject/phone">All phones<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="#">Samsung<i class="fas fa-chevron-down"></i></a></li>
 												</ul>
 											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="#">Tablets<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="#">E-book<i class="fas fa-chevron-down"></i></a></li>
 										</ul>
 									</li>
 									<li class="hassubs">
 										<a href="#">Electric appliances<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li>
-												<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-										</ul>
+										
 									</li>
 									
 									
 									<li class="hassubs">
 										<a href="#">Photo and video<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="regular.html">Regular Post<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
-										</ul>
+
 									</li>
-									<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="">Contact<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 				<!--  		</div>   -->		
 
